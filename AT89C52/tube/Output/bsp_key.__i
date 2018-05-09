@@ -1,0 +1,1 @@
+"..\User\bsp_key.c" OPTIMIZE (8,SPEED) BROWSE INCDIR(..\User) DEBUG OBJECTEXTEND PRINT(..\Listing\bsp_key.lst) TABS (6) OBJECT(..\Output\bsp_key.obj)

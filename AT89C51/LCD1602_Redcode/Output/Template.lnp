@@ -1,0 +1,5 @@
+"..\Output\STARTUP.obj",
+"..\Output\main.obj",
+"..\Output\lcd.obj" 
+TO "..\Output\Template" 
+PRINT("..\Listing\Template.m51")

@@ -1,0 +1,67 @@
+---- main Matches (71 in 36 files) ----
+applets.c (applets) line 643 : int main(int argc, char **argv)
+applets.h (include) line 17 : main  - corresponding <applet>_main to call (bzcat: main = bunzip2)
+applets.h (include) line 55 :   const struct bb_applet applets[] = { /*    name, main, location, need_suid */
+applets.h (include) line 57 : # define APPLET_NOUSAGE(name,main,l,s)       { #name, main##_main USE_FEATURE_INSTALLER(,l) USE_FEATURE_SUID(,s) },
+applets.h (include) line 58 : # define APPLET_ODDNAME(name,main,l,s,name2) { #name, main##_main USE_FEATURE_INSTALLER(,l) USE_FEATURE_SUID(,s) },
+applets.h (include) line 59 : # define APPLET_NOEXEC(name,main,l,s,name2)  { #name, main##_main USE_FEATURE_INSTALLER(,l) USE_FEATURE_SUID(,s) USE_FEATURE_PREFER_APPLETS(,1) },
+applets.h (include) line 60 : # define APPLET_NOFORK(name,main,l,s,name2)  { #name, main##_main USE_FEATURE_INSTALLER(,l) USE_FEATURE_SUID(,s) USE_FEATURE_PREFER_APPLETS(,1 ,1) },
+arp.c (networking) line 60 : /* Called only from main, once */
+arp.c (networking) line 208 : /* Called only from main, once */
+arp.c (networking) line 355 : /* Called only from main, once */
+ash.c (shell) line 137 : /* pid of main shell */
+ash.c (shell) line 139 : /* shell level: 0 for the main shell, 1 for its children, and so on */
+ash.c (shell) line 10495 :  *  We could also make parseoperator in essence the main routine, and
+ash.c (shell) line 12562 : /* ============ main() and helpers */
+ash.c (shell) line 12712 :  * interactive shell and control is returned to the main command loop.
+awk.c (editors) line 2668 : /* -------- main & co. -------- */
+busybox.h (include) line 3 :  * Busybox main internal header file
+crond_main in crond.c (miscutils) : 	 * main loop - synchronize to 1 second after the minute, minimum sleep
+devfsd_main in devfsd.c (miscutils) : }   /*  End Function main  */
+diffreg in diff.c (editors) :  * but I am lazy and check that in main() instead.
+diffreg in diff.c (editors) :  * Check in main won't catch "diffing fifos buried in subdirectories"
+do_one_pass in e2fsck.c (e2fsprogs\old_e2fsprogs) : 	 * into the main filesystem.
+xmenu in fdisk.c (util-linux) : 		puts("r\treturn to main menu");
+xmenu in fdisk.c (util-linux) : 		puts("r\treturn to main menu");
+xmenu in fdisk.c (util-linux) : 		puts("r\treturn to main menu");
+xmenu in fdisk.c (util-linux) : 		puts("r\treturn to main menu");
+bsd_menu in fdisk_osf.c (util-linux) : 	puts("r\treturn to main menu");
+check_sun_label in fdisk_sun.c (util-linux) : "or force a fresh label (s command in main menu)\n");
+getopt32.c (libbb) line 103 :         is the main option and the other chars are secondary options.
+getopt32.c (libbb) line 104 :         Their flags will be turned on if the main option is found even
+hdparm.c (miscutils) line 1927 : /* our main() routine: */
+httpd.c (networking) line 419 :  * Error pages are only parsed on the main config file.
+httpd.c (networking) line 727 : int main() { t(0x10); t(0x20); t('0'); t('9'); t('A'); t('F'); t('a'); t('f');
+httpd.c (networking) line 1860 :  * The main http server function.
+hush.c (shell) line 24 :  *      setup_redirect(), redirect_opt_num(), and big chunks of main()
+globals in hush.c (shell) : 	struct variable *top_var; /* = &shell_ver (set in main()) */
+run_list_real in hush.c (shell) : 				/* waits for completion, then fg's main shell */
+expand_vars_to_list in hush.c (shell) : 			/* FIXME: (echo $$) should still print pid of main shell */
+parse_stream in hush.c (shell) : 	 * A single-quote triggers a bypass of the main loop until its mate is
+ifconfig.c (networking) line 261 :  * Our main function.
+iprule.c (networking\libiproute) line 40 : 	fprintf(stderr, "TABLE_ID := [ local | main | default | NUMBER ]\n");
+libbb.h (include) line 3 :  * Busybox main internal header file
+sysinfo in libbb.h (include) : 	unsigned long totalram;		/* Total usable main memory size */
+ls.c (coreutils) line 544 : /* Initialized in main() */
+ls.c (coreutils) line 783 : /* THIS IS A "SAFE" APPLET, main() MAY BE CALLED INTERNALLY FROM SHELL */
+make_directory.c (libbb) line 12 :  * This is the main work function for the 'mkdir' applet.  As such, it
+mconf.c (scripts\kconfig) line 120 : "At the end of the main menu you will find two options.  One is\n"
+msh.c (shell) line 43 : # define msh_main(argc,argv) main(argc,argv)
+msh.c (shell) line 680 : static struct var *prompt;		/* main prompt */
+msh.c (shell) line 697 : static char *elinep; /* done in main(): = line + sizeof(line) - 5 */
+msh.c (shell) line 720 : 	NULL /* set to line in main() */, /* linep:  char ptr */
+globals in msh.c (shell) : 	struct iobuf sharedbuf; /* in main(): set to { AFID_NOBUF } */
+globals in msh.c (shell) : 	struct iobuf mainbuf; /* in main(): set to { AFID_NOBUF } */
+nc_main in nc.c (networking) : 		/* child (or main thread if no multiple -l) */
+nc_bloaty.c (networking) line 670 : /* main: now we pull it all together... */
+netstat.c (networking) line 484 :  * Our main function.
+rpm_gettags in rpm.c (archival) : 	/* 1st pass is the signature headers, 2nd is the main stuff */
+rpm2cpio_main in rpm2cpio.c (archival) : 	/* Skip the main header */
+rtnl_rttable_initialize in rt_names.c (networking\libiproute) : 	rtnl_rttable_tab[254] = "main";
+tcpudp.c (ipsvd) line 78 : /* Must match getopt32 in main! */
+usage.h (include) line 1716 :        "	TABLE_ID := [local | main | default | NUMBER]"
+run_nofork_applet_prime in vfork_daemon_rexec.c (libbb) : 		/* Finally we can call NOFORK applet's main() */
+vi_main in vi.c (editors) : 	//----- This is the main file handling loop --------------
+edit_file in vi.c (editors) : 	//------This is the main Vi cmd handling loop -----------------------
+xargs.c (findutils) line 52 :    Don't use fork and include to main!
+zcip.c (networking) line 157 :  * main program

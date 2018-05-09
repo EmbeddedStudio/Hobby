@@ -1,0 +1,6 @@
+"..\Output\STARTUP.obj",
+"..\Output\main.obj",
+"..\Output\bsp_delay.obj",
+"..\Output\bsp_key.obj" 
+TO "..\Output\89C51" 
+PRINT("..\Listing\89C51.m51")

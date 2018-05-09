@@ -1,0 +1,26 @@
+[core]
+	repositoryformatversion = 0
+	filemode = false
+	bare = false
+	logallrefupdates = true
+	symlinks = false
+	ignorecase = true
+[remote "coding"]
+	url = git@git.coding.net:mz8023flyme/hobby.git
+	fetch = +refs/heads/*:refs/remotes/coding/*
+[remote "github"]
+	url = git@github.com:mz8023flyme/Hobby.git
+	fetch = +refs/heads/*:refs/remotes/github/*
+[remote "mayun"]
+	url = git@gitee.com:mzflyme/hobby.git
+	fetch = +refs/heads/*:refs/remotes/mayun/*
+[remote "all"]
+	url = git@git.coding.net:mz8023flyme/hobby.git
+	fetch = +refs/heads/*:refs/remotes/coding/*
+	url = git@github.com:mz8023flyme/Hobby.git
+	fetch = +refs/heads/*:refs/remotes/github/*
+	url = git@gitee.com:mzflyme/hobby.git
+	fetch = +refs/heads/*:refs/remotes/mayun/*
+[branch "master"]
+	remote = coding
+	merge = refs/heads/master

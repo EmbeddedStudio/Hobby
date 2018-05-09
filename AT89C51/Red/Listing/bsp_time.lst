@@ -1,0 +1,35 @@
+C51 COMPILER V9.56.0.0   BSP_TIME                                                          01/08/2017 22:01:49 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE BSP_TIME
+OBJECT MODULE PLACED IN ..\Output\bsp_time.obj
+COMPILER INVOKED BY: D:\program Files\C51\BIN\C51.EXE ..\User\bsp_time.c OPTIMIZE(8,SPEED) BROWSE INCDIR(..\User) DEBUG 
+                    -OBJECTEXTEND PRINT(..\Listing\bsp_time.lst) TABS(8) OBJECT(..\Output\bsp_time.obj)
+
+line level    source
+
+   1          #include "bsp_time.h"
+   2          
+   3          extern  number[];
+   4          
+   5          void time()
+   6          {
+   7   1              if (number[5]<9 )
+   8   1              {
+   9   2              number[5] = number[5] + 1;
+  10   2              }
+  11   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     22    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

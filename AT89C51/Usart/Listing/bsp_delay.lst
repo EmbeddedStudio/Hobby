@@ -1,0 +1,48 @@
+C51 COMPILER V9.56.0.0   BSP_DELAY                                                         10/06/2017 10:07:19 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE BSP_DELAY
+OBJECT MODULE PLACED IN ..\Output\bsp_delay.obj
+COMPILER INVOKED BY: D:\Program Files\AT89C51\C51\BIN\C51.EXE ..\User\bsp_delay.c OPTIMIZE(8,SPEED) BROWSE INCDIR(..\Use
+                    -r) DEBUG OBJECTEXTEND PRINT(..\Listing\bsp_delay.lst) TABS(8) OBJECT(..\Output\bsp_delay.obj)
+
+line level    source
+
+   1          #include "bsp_delay.h"
+   2          #include <intrins.h>
+   3          
+   4          /** 
+   5           * @Description 软件简单延时，微秒级延时
+   6           * @param t 延时的微秒数
+   7           */
+   8          void delay_us(u32 t)
+   9          {
+  10   1              u32 i;
+  11   1              for(i = t / 4; i > 0; i--)
+  12   1                      _nop_();
+  13   1      }
+  14          
+  15          /** 
+  16           * @Description 软件简单延时，毫秒级延时
+  17           * @param t 延时的微秒数
+  18           */
+  19          void delay_ms(u32 t)
+  20          {
+  21   1              u32 i;
+  22   1              for(i = t / 5; i > 0; i--)
+  23   1                      delay_us(1000);
+  24   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    138    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       8
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

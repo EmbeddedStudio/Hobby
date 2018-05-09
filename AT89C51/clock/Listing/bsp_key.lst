@@ -1,0 +1,383 @@
+C51 COMPILER V9.56.0.0   BSP_KEY                                                           09/26/2017 21:17:25 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE BSP_KEY
+OBJECT MODULE PLACED IN ..\Output\bsp_key.obj
+COMPILER INVOKED BY: D:\Program Files\AT89C51\C51\BIN\C51.EXE ..\User\bsp_key.c OPTIMIZE(8,SPEED) BROWSE INCDIR(..\User)
+                    - DEBUG OBJECTEXTEND PRINT(..\Listing\bsp_key.lst) TABS(8) OBJECT(..\Output\bsp_key.obj)
+
+line level    source
+
+   1          #include "bsp_key.h"
+   2          #include "bsp_delay.h"
+   3          
+   4          
+   5          
+   6          /** 
+   7           * @Description 按键扫描函数(8个按键同时扫描)
+   8           * @return u8   按键键值
+   9           */
+  10          u8 Key_Scan(void)
+  11          {
+  12   1              /* 保存按键键值的变量，默认值0xff表示没有按键按下 */
+  13   1              u8 keyValue = 0xff;
+  14   1              
+  15   1              /* 用于松手检测的累加变量 */
+  16   1              int i = 0;
+  17   1              
+  18   1              /* 这里在1ms前后检测两边是为了滤除按键抖动产生的尖峰脉冲 */
+  19   1              if(GPIO_KEY != 0xff)
+  20   1              {
+  21   2                      delay(1);
+  22   2                      
+  23   2                      /* 如果1ms前后检测都是低电平的话，就说明是真的有按键按下 */
+  24   2                      if(GPIO_KEY != 0xff)
+  25   2                      {
+  26   3                              /* 真的有按键按下，则将按键键值存入keyValue中 */
+  27   3                              keyValue = GPIO_KEY;
+  28   3                              
+  29   3                              /* 这里是松手检测，在20ms内按键没有放开，程序会一直停在此处 */
+  30   3                              /* 倘若50ms期间，松开了按键，则会跳出此while循环 */
+  31   3                              /* 也就是说：按键没有松开的话，程序不会去做其他的事情 */
+  32   3                              /* 当然也有松手检测的超时时间，就是我们设置的20ms */
+  33   3                              while((i < 20) && (GPIO_KEY != 0xff))
+  34   3                              {
+  35   4                                      delay(1);
+  36   4                                      i++;
+  37   4                              }
+  38   3                      }
+  39   2              }
+  40   1              
+  41   1              /* 返回按键的键值，通过解析这个键值，就能知道是哪一个按键按下 */
+  42   1              return keyValue;
+  43   1      }
+  44          
+  45          void Key_Control (u8 keyValue)
+  46          {
+  47   1              switch(keyValue)
+  48   1              {
+  49   2                      case(0xfe):                              //左/年
+  50   2                              if(state==0)
+  51   2                              {
+  52   3                                      state=2;
+  53   3                              }
+  54   2                              else
+C51 COMPILER V9.56.0.0   BSP_KEY                                                           09/26/2017 21:17:25 PAGE 2   
+
+  55   2                              {
+  56   3                                      if(location>0)
+  57   3                                      {
+  58   4                                              location-=1;
+  59   4                                      }
+  60   3                              }
+  61   2                      
+  62   2                      break;
+  63   2                      case(0xfd):                             //右/日期
+  64   2                              if(state==0)
+  65   2                              {
+  66   3                                      state=3;
+  67   3                              }
+  68   2                              else
+  69   2                              {
+  70   3                                      if(location<4)
+  71   3                                      {
+  72   4                                              location+=1;
+  73   4                                      }
+  74   3                              }
+  75   2                      break;
+  76   2                      case(0xfb):                          //设置
+  77   2                              switch(state)
+  78   2                              {
+  79   3                                      case(0):
+  80   3                                              state=1;
+  81   3                                      break;
+  82   3                                      case(2):
+  83   3                                              state=21;
+  84   3                                              location=2;
+  85   3                                      break;
+  86   3                                      case(3):
+  87   3                                              state=31;
+  88   3                                      break;
+  89   3                                      case(4):
+  90   3                                              state=41;
+  91   3                                      break;
+  92   3                                      case(5):
+  93   3                                              state=51;
+  94   3                                      break;
+  95   3                                      case(6):
+  96   3                                              state=61;
+  97   3                                      break;
+  98   3                              }
+  99   2                              
+ 100   2                      break;
+ 101   2                      case(0xf7):                     //切换/星期
+ 102   2                              if(state==0)
+ 103   2                              {
+ 104   3                                      state=4;
+ 105   3                              }
+ 106   2                              else if (state==1||state==21||state==31||state==41||state==51||state==61)
+ 107   2                              {
+ 108   3                                      state=0;
+ 109   3                                      location=0;
+ 110   3                              }
+ 111   2                      break;
+ 112   2                      case(0xef):                     //加/闹钟
+ 113   2                              switch(state)
+ 114   2                              {
+ 115   3                                      case(0):
+ 116   3                                              state=5;
+C51 COMPILER V9.56.0.0   BSP_KEY                                                           09/26/2017 21:17:25 PAGE 3   
+
+ 117   3                                      break;
+ 118   3                                      case(1):
+ 119   3                                              if(value[0]==0&&location==0)
+ 120   3                                              {
+ 121   4                                                      value[0]+=1;
+ 122   4                                              }
+ 123   3                                              else if(value[0]==1&&value[1]>3&&value[1]<=9&&location==0)
+ 124   3                                              {
+ 125   4                                                      value[0]+=1;
+ 126   4                                                      value[1]=3;
+ 127   4                                              }
+ 128   3                                              else if(value[0]<2&&value[1]<3&&location==0)
+ 129   3                                              {
+ 130   4                                                      value[0]+=1;
+ 131   4                                              }
+ 132   3                                              else if ((value[0]<2&&value[1]<9&&location==1)||(value[0]==2&&valu
+             -e[1]<3&&location==1))
+ 133   3                                              {
+ 134   4                                                      value[1]+=1;
+ 135   4                                              }
+ 136   3                                              else if(value[2]<5&&location==2)
+ 137   3                                              {
+ 138   4                                                      value[2]+=1;
+ 139   4                                              }
+ 140   3                                              else if(value[3]<9&&location==3)
+ 141   3                                              {
+ 142   4                                                      value[3]+=1;
+ 143   4                                              }
+ 144   3                                      break;
+ 145   3                                      case(21):
+ 146   3                                              if(nian[2]<9&&location==2)
+ 147   3                                              {
+ 148   4                                                      nian[2]+=1;
+ 149   4                                              }
+ 150   3                                              else if(nian[3]<9&&location==3)
+ 151   3                                              {
+ 152   4                                                      nian[3]+=1;
+ 153   4                                              }
+ 154   3                                      break;
+ 155   3                                      case(31):
+ 156   3                                              if(riqi[0]==0&&location==0)
+ 157   3                                              {
+ 158   4                                                      riqi[0]+=1;
+ 159   4                                              }
+ 160   3                                              else if( ((riqi[0]*10+riqi[1]) <12 ) &&location==1)
+ 161   3                                              {
+ 162   4                                                      riqi[1]+=1;
+ 163   4                                              }
+ 164   3                                              else if(riqi[2]<2  &&location==2)
+ 165   3                                              {
+ 166   4                                                      riqi[2]+=1;
+ 167   4                                              }
+ 168   3                                              else if(riqi[2]==2  &&location==2)
+ 169   3                                              {
+ 170   4                                                      riqi[2]+=1;
+ 171   4                                                      riqi[3]=0;
+ 172   4                                              }
+ 173   3                                              else if(((riqi[2]*10+riqi[3]) <29 ) &&location==3)
+ 174   3                                              {
+ 175   4                                                      riqi[3]+=1;
+ 176   4                                              }
+ 177   3                                              else if(riqi[2]==3&& riqi[3]==0 &&location==3)
+C51 COMPILER V9.56.0.0   BSP_KEY                                                           09/26/2017 21:17:25 PAGE 4   
+
+ 178   3                                              {
+ 179   4                                                      riqi[3]+=1;
+ 180   4                                              }
+ 181   3                                      break;
+ 182   3                                      case(41):
+ 183   3                                              if(week<7&&location==2)
+ 184   3                                              {
+ 185   4                                                      week+=1;
+ 186   4                                              }
+ 187   3                                      break;
+ 188   3                                      case(51):
+ 189   3                                              if(alarm[0]==0&&location==0)
+ 190   3                                              {
+ 191   4                                                      alarm[0]+=1;
+ 192   4                                              }
+ 193   3                                              else if(alarm[0]==1&&alarm[1]>3&&alarm[1]<=9&&location==0)
+ 194   3                                              {
+ 195   4                                                      alarm[0]+=1;
+ 196   4                                                      alarm[1]=3;
+ 197   4                                              }
+ 198   3                                              else if(alarm[0]<2&&alarm[1]<3&&location==0)
+ 199   3                                              {
+ 200   4                                                      alarm[0]+=1;
+ 201   4                                              }
+ 202   3                                              else if ((alarm[0]<2&&alarm[1]<9&&location==1)||(alarm[0]==2&&alar
+             -m[1]<3&&location==1))
+ 203   3                                              {
+ 204   4                                                      alarm[1]+=1;
+ 205   4                                              }
+ 206   3                                              else if(alarm[2]<5&&location==2)
+ 207   3                                              {
+ 208   4                                                      alarm[2]+=1;
+ 209   4                                              }
+ 210   3                                              else if(alarm[3]<9&&location==3)
+ 211   3                                              {
+ 212   4                                                      alarm[3]+=1;
+ 213   4                                              }
+ 214   3                                      break;
+ 215   3                                      case(61):
+ 216   3                                              if(temp[0]<9&&location==0)
+ 217   3                                              {
+ 218   4                                                      temp[0]+=1;
+ 219   4                                              }
+ 220   3                                              else if(temp[1]<9&&location==1)
+ 221   3                                              {
+ 222   4                                                      temp[1]+=1;
+ 223   4                                              }
+ 224   3                                              else if(temp[2]<9&&location==2)
+ 225   3                                              {
+ 226   4                                                      temp[2]+=1;
+ 227   4                                              }
+ 228   3                                              else if(temp[3]<9&&location==3)
+ 229   3                                              {
+ 230   4                                                      temp[3]+=1;
+ 231   4                                              }
+ 232   3                                      break;
+ 233   3                                              
+ 234   3                                              
+ 235   3                              }
+ 236   2                      break;
+ 237   2                      case(0xdf):                     //减/温度
+ 238   2                              switch(state)
+C51 COMPILER V9.56.0.0   BSP_KEY                                                           09/26/2017 21:17:25 PAGE 5   
+
+ 239   2                              {
+ 240   3                                      case(0):
+ 241   3                                              state=6;
+ 242   3                                      break;
+ 243   3                                      case(1):
+ 244   3                                              if(value[0]>0&&location==0)
+ 245   3                                              {
+ 246   4                                                      value[0]-=1;
+ 247   4                                              }
+ 248   3                                              else if(value[1]>0&&location==1)
+ 249   3                                              {
+ 250   4                                                      value[1]-=1;
+ 251   4                                              }
+ 252   3                                              else if(value[2]>0&&location==2)
+ 253   3                                              {
+ 254   4                                                      value[2]-=1;
+ 255   4                                              }
+ 256   3                                              else if(value[3]>0&&location==3)
+ 257   3                                              {
+ 258   4                                                      value[3]-=1;
+ 259   4                                              }
+ 260   3                                      break;
+ 261   3                                      case(21):
+ 262   3                                              if(nian[0]>0&&location==0)
+ 263   3                                              {
+ 264   4                                                      nian[0]-=1;
+ 265   4                                              }
+ 266   3                                              else if(nian[1]>0&&location==1)
+ 267   3                                              {
+ 268   4                                                      nian[1]-=1;
+ 269   4                                              }
+ 270   3                                              else if(nian[2]>0&&location==2)
+ 271   3                                              {
+ 272   4                                                      nian[2]-=1;
+ 273   4                                              }
+ 274   3                                              else if(nian[3]>0&&location==3)
+ 275   3                                              {
+ 276   4                                                      nian[3]-=1;
+ 277   4                                              }
+ 278   3                                      break;
+ 279   3                                      case(31):
+ 280   3                                              if(riqi[0]>0&&location==0)
+ 281   3                                              {
+ 282   4                                                      riqi[0]-=1;
+ 283   4                                              }
+ 284   3                                              else if(riqi[1]>0&&location==1)
+ 285   3                                              {
+ 286   4                                                      riqi[1]-=1;
+ 287   4                                              }
+ 288   3                                              else if(riqi[2]>0&&location==2)
+ 289   3                                              {
+ 290   4                                                      riqi[2]-=1;
+ 291   4                                              }
+ 292   3                                              else if(riqi[3]>0&&location==3)
+ 293   3                                              {
+ 294   4                                                      riqi[3]-=1;
+ 295   4                                              }
+ 296   3                                      break;
+ 297   3                                      case(41):
+ 298   3                                              if(week>0&&location==2)
+ 299   3                                              {
+ 300   4                                                      week-=1;
+C51 COMPILER V9.56.0.0   BSP_KEY                                                           09/26/2017 21:17:25 PAGE 6   
+
+ 301   4                                              }
+ 302   3                                      break;
+ 303   3                                      case(51):
+ 304   3                                              if(alarm[0]>0&&location==0)
+ 305   3                                              {
+ 306   4                                                      alarm[0]-=1;
+ 307   4                                              }
+ 308   3                                              else if(alarm[1]>0&&location==1)
+ 309   3                                              {
+ 310   4                                                      alarm[1]-=1;
+ 311   4                                              }
+ 312   3                                              else if(alarm[2]>0&&location==2)
+ 313   3                                              {
+ 314   4                                                      alarm[2]-=1;
+ 315   4                                              }
+ 316   3                                              else if(alarm[3]>0&&location==3)
+ 317   3                                              {
+ 318   4                                                      alarm[3]-=1;
+ 319   4                                              }
+ 320   3                                      break;
+ 321   3                                      case(61):
+ 322   3                                              if(temp[0]>0&&location==0)
+ 323   3                                              {
+ 324   4                                                      temp[0]-=1;
+ 325   4                                              }
+ 326   3                                              else if(temp[1]>0&&location==1)
+ 327   3                                              {
+ 328   4                                                      temp[1]-=1;
+ 329   4                                              }
+ 330   3                                              else if(temp[2]>0&&location==2)
+ 331   3                                              {
+ 332   4                                                      temp[2]-=1;
+ 333   4                                              }
+ 334   3                                              else if(temp[3]>0&&location==3)
+ 335   3                                              {
+ 336   4                                                      temp[3]-=1;
+ 337   4                                              }
+ 338   3                                      break;
+ 339   3                                      
+ 340   3                              }
+ 341   2                      break;
+ 342   2                      
+ 343   2              }
+ 344   1      }
+ 345          
+ 346          
+ 347          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1220    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       3
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

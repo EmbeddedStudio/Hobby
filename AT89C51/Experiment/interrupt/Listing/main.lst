@@ -1,0 +1,156 @@
+C51 COMPILER V9.56.0.0   MAIN                                                              05/04/2018 18:24:06 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN ..\Output\main.obj
+COMPILER INVOKED BY: D:\Program Files\AT89C51\C51\BIN\C51.EXE ..\User\main.c OPTIMIZE(8,SPEED) BROWSE INCDIR(..\User) DE
+                    -BUG OBJECTEXTEND PRINT(..\Listing\main.lst) TABS(8) OBJECT(..\Output\main.obj)
+
+line level    source
+
+   1          #include <reg52.h>
+   2          
+   3          #define u8  unsigned char
+   4          #define u16 unsigned short
+   5          #define u32 unsigned long
+   6          
+   7          sbit key1=P3^0;
+   8          sbit key2=P3^1;
+   9          sbit key3=P3^2;
+  10          sbit key4=P3^3;
+  11          
+  12          u8 SegCode[10] = {0x3F, 0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07, 0x7F, 0x6F};  // 段选低电平有效
+  13          
+  14          u8 Num1[4]={8,0,2,3};//改成自己的学号
+  15          u8 Num2[4]={9,1,2,3};//改成自己的学号
+  16          
+  17          char count=0;
+  18          void delay( u16 t);
+  19          u8  key_contraol(void);
+  20          u8  location=0;
+  21          u8 key_flag=0;
+  22          void main(void)
+  23          {
+  24   1              
+  25   1              u8 i=0;
+  26   1              
+  27   1              IE = 0x85;
+  28   1              IT1 = 1;
+  29   1              IT0 = 1;
+  30   1              P0=0x00;
+  31   1              P2=0x00;
+  32   1              while(1)
+  33   1              {
+  34   2      //                key_flag=key_contraol();
+  35   2                      
+  36   2                      if(location!=0)
+  37   2                      {
+  38   3                              P0=SegCode[count];
+  39   3                              for(i=0;i<4;i++)
+  40   3                              {
+  41   4                                      P1&=0xf8; //1111 1000
+  42   4                                      P1|=i;   //xxxx x001
+  43   4                                      if(key_flag ==0)
+  44   4                                      {
+  45   5                                              P2=SegCode[Num1[i]];
+  46   5                                      }
+  47   4                                      if (key_flag==1)
+  48   4                                      {
+  49   5                                          P2=SegCode[Num2[i]];
+  50   5                                      }
+  51   4                                      delay(1);
+  52   4                                      P0=0x00;//消隐
+  53   4                              }
+  54   3                      }
+C51 COMPILER V9.56.0.0   MAIN                                                              05/04/2018 18:24:06 PAGE 2   
+
+  55   2              }
+  56   1      
+  57   1      }
+  58          void delay( u16 t)
+  59          {
+  60   1              u16 i,j;
+  61   1              for(i=0;i<t;i++)
+  62   1                      for(j=0;j<2000;j++);
+  63   1      }
+  64          
+  65          u8  key_contraol(void)
+  66          {
+  67   1              u8 key ;
+  68   1              if(key1==0)
+  69   1              {
+  70   2                      delay(10)  ;
+  71   2                      if(key1==0)
+  72   2                      {
+  73   3                                key=0;
+  74   3                      }
+  75   2              }
+  76   1              if(key2==0)
+  77   1              {
+  78   2                      delay(10)  ;
+  79   2                      if(key2==0)
+  80   2                      {
+  81   3                                key=1;
+  82   3                      }
+  83   2              }
+  84   1      return key;
+  85   1      }
+  86          
+  87          
+  88          void INT0_IRQHander(void) interrupt 0
+  89          {
+  90   1              u8 i=0;
+  91   1              location=1;
+  92   1              key_flag=!key_flag;
+  93   1              if(key3==0)
+  94   1              {
+  95   2                      delay(10);
+  96   2                      if(key3==0)
+  97   2                      {
+  98   3                              count-=1;
+  99   3                              if(count<0)
+ 100   3                                      count=9;
+ 101   3                      } 
+ 102   2                      while( (key3==0) && i<20)
+ 103   2                      {
+ 104   3                              i++;
+ 105   3                      }
+ 106   2              }
+ 107   1      }
+ 108          
+ 109          void INT1_IRQHander(void) interrupt 2
+ 110          {
+ 111   1              u8 i=0;
+ 112   1              location=1;
+ 113   1              key_flag=!key_flag;
+ 114   1              if(key4==0)
+ 115   1              {
+ 116   2                      delay(10);
+C51 COMPILER V9.56.0.0   MAIN                                                              05/04/2018 18:24:06 PAGE 3   
+
+ 117   2                      if(key4==0)
+ 118   2                      {
+ 119   3                              count+=1;
+ 120   3                              if(count>=10)
+ 121   3                                      count=0;
+ 122   3                      } 
+ 123   2                      while( (key4==0) && i<20)
+ 124   2                      {
+ 125   3                              i++;
+ 126   3                      }
+ 127   2              }
+ 128   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    335    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     21       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

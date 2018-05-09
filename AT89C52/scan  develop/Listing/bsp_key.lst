@@ -1,0 +1,106 @@
+C51 COMPILER V9.56.0.0   BSP_KEY                                                           12/28/2016 15:23:36 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE BSP_KEY
+OBJECT MODULE PLACED IN ..\Output\bsp_key.obj
+COMPILER INVOKED BY: D:\program Files\C51\BIN\C51.EXE ..\User\bsp_key.c OPTIMIZE(8,SPEED) BROWSE INCDIR(..\User) DEBUG O
+                    -BJECTEXTEND PRINT(..\Listing\bsp_key.lst) TABS(8) OBJECT(..\Output\bsp_key.obj)
+
+line level    source
+
+   1          #include "bsp_key.h" 
+   2          #include "bsp_delay.h" 
+   3          
+   4          sbit K2 = P3^4;
+   5          sbit K3 = P3^5;
+   6          sbit K4 = P3^6;
+   7          sbit K5 = P3^7;
+   8          
+   9          extern u8 location;
+  10          extern u8 flag;
+  11          extern u8 wei;
+  12          void key_scan()
+  13          {
+  14   1              
+  15   1              if(0 == K4)
+  16   1              {
+  17   2                      // 按键消抖
+  18   2                      delay_ms(1);
+  19   2                      if(0 == K4)
+  20   2                      {
+  21   3                              if(9 != location)
+  22   3                              {
+  23   4                                      location = location +1;
+  24   4                              }
+  25   3                      }
+  26   2                      
+  27   2                      // 松手检测
+  28   2                      while(0 == K4);
+  29   2                      
+  30   2              }
+  31   1              
+  32   1              if(0 == K3)
+  33   1              {
+  34   2                      // 按键消抖
+  35   2                      delay_ms(1);
+  36   2                      if(0 == K3)
+  37   2                      {
+  38   3                              flag = !flag;
+  39   3                      }
+  40   2                      
+  41   2                      // 松手检测
+  42   2                      while(0 == K3);
+  43   2                      
+  44   2              }
+  45   1      
+  46   1              if(0 == K2)
+  47   1              {
+  48   2                      // 按键消抖
+  49   2                      delay_ms(1);
+  50   2                      if(0 == K2)
+  51   2                      {
+  52   3                              if(0 != location)
+  53   3                              {
+  54   4                                      location = location - 1;
+C51 COMPILER V9.56.0.0   BSP_KEY                                                           12/28/2016 15:23:36 PAGE 2   
+
+  55   4                              }
+  56   3                      }
+  57   2                      
+  58   2                      // 松手检测
+  59   2                      while(0 == K2);
+  60   2              }
+  61   1              if(0 == K5)
+  62   1              {
+  63   2                      // 按键消抖
+  64   2                      delay_ms(1);
+  65   2                      if(0 == K5)
+  66   2                      {
+  67   3                              if(6 != wei)
+  68   3                              {
+  69   4                                      wei = wei + 1;
+  70   4                              }
+  71   3                              else if (6==wei)
+  72   3                              {
+  73   4                                      wei=wei-5;
+  74   4                              }       
+  75   3                      }
+  76   2                      
+  77   2                      // 松手检测
+  78   2                      while(0 == K5);
+  79   2              }
+  80   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    102    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

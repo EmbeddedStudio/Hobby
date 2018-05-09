@@ -1,0 +1,292 @@
+C51 COMPILER V9.56.0.0   MAIN                                                              09/21/2017 19:48:40 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN ..\Output\main.obj
+COMPILER INVOKED BY: D:\Program Files\AT89C51\C51\BIN\C51.EXE ..\User\main.c OPTIMIZE(8,SPEED) BROWSE INCDIR(..\User) DE
+                    -BUG OBJECTEXTEND PRINT(..\Listing\main.lst) TABS(8) OBJECT(..\Output\main.obj)
+
+line level    source
+
+   1          #include "reg52.h"
+   2          #include "main.h"
+   3          #include "bsp_delay.h"
+   4          #include "bsp_key.h"
+   5          
+   6          #define Segment P0
+   7          #define Digital P1
+   8          
+   9          /* 定义模型变量 */
+  10          u8 value[6] = {1, 1, 5, 9, 0, 0};                                               // 记录数码管每一�
+             -�对应值的数组
+  11          u8 alarm[4] = {1, 2, 0, 0};                                                     // 记录闹钟的时间�
+             -�变量，这里只支持一个闹钟
+  12          u8 location = 0;                                                                // 记录当期是哪一�
+             -�闪烁
+  13          u8 state = STATE_RUNNING;                                                       // 记录当前电子表�
+             -�状态
+  14          
+  15          sbit beep = P3^7;
+  16          
+  17          /* 数码管段选码、位选码 */
+  18          u8 SegCode[10] = {0x3F, 0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07, 0x7F, 0x6F};  // 段选高电平有效
+  19          u8 DigCode[6] = {0xfe, 0xfd, 0xfb, 0xf7, 0xef, 0xdf};   // 位选低电平有效
+  20          
+  21          u8 InterruptCount = 0;
+  22          
+  23          int main()
+  24          {
+  25   1              u8 i, j;
+  26   1              
+  27   1              /* 这里设置的值是表示，10次扫描全部显示，10次扫描location位不显示 */
+  28   1              u8 dispalyCount = 10;
+  29   1              
+  30   1              IT0 = 1;
+  31   1              TMOD = 0x01;
+  32   1              TH0 = 0x0b;
+  33   1              TL0 = 0xdc;
+  34   1              IE = 0x83;
+  35   1              TR0 = 1;
+  36   1              
+  37   1              beep = 0;
+  38   1              
+  39   1              while(1)
+  40   1              {
+  41   2                      if((state == STATE_RUNNING) || (state == STATE_SETTING))
+  42   2                      {
+  43   3                              
+  44   3                              /* 这里扫描的时候是正常显示6位 */
+  45   3                              for(j = dispalyCount; j > 0; j--)
+  46   3                              {
+  47   4                                      for(i = 0; i < 6; i++)
+  48   4                                      {
+  49   5                                              Digital = DigCode[i];
+  50   5                                              
+C51 COMPILER V9.56.0.0   MAIN                                                              09/21/2017 19:48:40 PAGE 2   
+
+  51   5                                              /* 这是是在第一位和第三位的位置上添加小数点 */
+  52   5                                              if(i == 1 || i == 3)
+  53   5                                              {
+  54   6                                                      /* 通过按位与操作，在不改变低7位的前提下
+             -，将位7置为高电平 */
+  55   6                                                      Segment = SegCode[value[i]] | 0x80;
+  56   6                                              }
+  57   5                                              else
+  58   5                                              {
+  59   6                                                      Segment = SegCode[value[i]];
+  60   6                                              }
+  61   5                                              delay_ms(1);
+  62   5                                      }
+  63   4                              }
+  64   3                              
+  65   3                              if(state == STATE_SETTING)
+  66   3                              {
+  67   4                                      /* 这里扫描的时候location对应位不显示，只显示其他位 */
+  68   4                                      for(j = dispalyCount; j > 0; j--)
+  69   4                                      {
+  70   5                                              for(i = 0; i < 6; i++)
+  71   5                                              {
+  72   6                                                      /* 判断当期扫描的位是不是location对应位 */
+  73   6                                                      if(location == i)
+  74   6                                                      {
+  75   7                                                              /* 如果是的话，不选中任何位选，也�
+             -�是全灭 */
+  76   7                                                              Digital = 0xff;
+  77   7                                                      }
+  78   6                                                      else
+  79   6                                                      {
+  80   7                                                              /* 对于其他为就正常显示就好 */
+  81   7                                                              Digital = DigCode[i];
+  82   7                                                      }
+  83   6                                                      
+  84   6                                                      /* 这里和上面是一样的，加小数点的操作 */
+  85   6                                                      if(i == 1 || i == 3)
+  86   6                                                      {
+  87   7                                                              Segment = SegCode[value[i]] | 0x80;
+  88   7                                                      }
+  89   6                                                      else
+  90   6                                                      {
+  91   7                                                              Segment = SegCode[value[i]];
+  92   7                                                      }
+  93   6                                                      delay_ms(1);
+  94   6                                              }
+  95   5                                      }
+  96   4                              }
+  97   3                      }
+  98   2                      else if(state == STATE_ALARM)
+  99   2                      {
+ 100   3                              /* 这里扫描的时候是正常显示4位 */
+ 101   3                              for(j = dispalyCount; j > 0; j--)
+ 102   3                              {
+ 103   4                                      for(i = 0; i < 4; i++)
+ 104   4                                      {
+ 105   5                                              Digital = DigCode[i];
+ 106   5                                              
+ 107   5                                              /* 这是是在第一位添加小数点 */
+ 108   5                                              if(i == 1)
+ 109   5                                              {
+ 110   6                                                      /* 通过按位与操作，在不改变低7位的前提下
+C51 COMPILER V9.56.0.0   MAIN                                                              09/21/2017 19:48:40 PAGE 3   
+
+             -，将位7置为高电平 */
+ 111   6                                                      Segment = SegCode[alarm[i]] | 0x80;
+ 112   6                                              }
+ 113   5                                              else
+ 114   5                                              {
+ 115   6                                                      Segment = SegCode[alarm[i]];
+ 116   6                                              }
+ 117   5                                              delay_ms(1);
+ 118   5                                      }
+ 119   4                              }
+ 120   3                              
+ 121   3                              for(j = dispalyCount; j > 0; j--)
+ 122   3                              {
+ 123   4                                      for(i = 0; i < 4; i++)
+ 124   4                                      {
+ 125   5                                              /* 判断当期扫描的位是不是location对应位 */
+ 126   5                                              if(location == i)
+ 127   5                                              {
+ 128   6                                                      /* 如果是的话，不选中任何位选，也就是全�
+             -�� */
+ 129   6                                                      Digital = 0xff;
+ 130   6                                              }
+ 131   5                                              else
+ 132   5                                              {
+ 133   6                                                      /* 对于其他为就正常显示就好 */
+ 134   6                                                      Digital = DigCode[i];
+ 135   6                                              }
+ 136   5                                              
+ 137   5                                              /* 这里和上面是一样的，加小数点的操作 */
+ 138   5                                              if(i == 1)
+ 139   5                                              {
+ 140   6                                                      Segment = SegCode[alarm[i]] | 0x80;
+ 141   6                                              }
+ 142   5                                              else
+ 143   5                                              {
+ 144   6                                                      Segment = SegCode[alarm[i]];
+ 145   6                                              }
+ 146   5                                              delay_ms(1);
+ 147   5                                      }
+ 148   4                              }
+ 149   3                      }
+ 150   2              }
+ 151   1      }
+ 152          
+ 153          /**
+ 154           * @Descroption 外部中断0中断服务函数
+ 155           */ 
+ 156          void INT0_Handler() interrupt 0
+ 157          {
+ 158   1              Key_Control(Key_Scan());
+ 159   1      }
+ 160          
+ 161          /**
+ 162           * @Descroption 定时器0中断服务函数
+ 163           */
+ 164          void TIM0_Handler() interrupt 1
+ 165          {
+ 166   1              /* 手动的装载初值 */
+ 167   1              TH0 = 0x0b;
+ 168   1              TL0 = 0xdc;
+ 169   1              
+ 170   1              InterruptCount++;
+C51 COMPILER V9.56.0.0   MAIN                                                              09/21/2017 19:48:40 PAGE 4   
+
+ 171   1              
+ 172   1              if(InterruptCount >= 16)
+ 173   1              {
+ 174   2                      InterruptCount = 0;
+ 175   2                      Run();
+ 176   2              }        
+ 177   1      }
+ 178          
+ 179          /**
+ 180           * @Descroption 电子表正常运行函数，每1s加一，并完成的对应的进位
+ 181           */ 
+ 182          void Run(void)
+ 183          {     
+ 184   1              if(value[5] < 9)
+ 185   1              {
+ 186   2                      value[5]++;
+ 187   2              }
+ 188   1              else
+ 189   1              {
+ 190   2                      value[5] = 0;
+ 191   2                      
+ 192   2                      if(value[4] < 5)
+ 193   2                      {
+ 194   3                              value[4]++;
+ 195   3                      }
+ 196   2                      else
+ 197   2                      {
+ 198   3                              value[4] = 0;
+ 199   3                              
+ 200   3                              if(value[3] < 9)
+ 201   3                              {
+ 202   4                                      value[3]++;
+ 203   4                              }
+ 204   3                              else
+ 205   3                              {
+ 206   4                                      value[3] = 0;
+ 207   4                                      
+ 208   4                                      if(value[2] < 5)
+ 209   4                                      {
+ 210   5                                              value[2]++;
+ 211   5                                      }
+ 212   4                                      else
+ 213   4                                      {
+ 214   5                                              value[2] = 0;
+ 215   5                                              
+ 216   5                                              /* 如果时的十位为0或者1的话，时的个位其实是可�
+             -��显示0-9的 */
+ 217   5                                              /* 如果时的十位为2的话，那时的个位就只能显示0-
+             -3了 */
+ 218   5                                              if(((value[0] < 2) && (value[1] < 9)) || ((value[0] == 2) && (valu
+             -e[1] < 3)))
+ 219   5                                              {
+ 220   6                                                      value[1]++;
+ 221   6                                              }
+ 222   5                                              else 
+ 223   5                                              {
+ 224   6                                                      value[1] = 0;
+ 225   6                                                      
+ 226   6                                                      if(value[0] < 2)
+ 227   6                                                      {
+ 228   7                                                              value[0]++;
+ 229   7                                                      }
+C51 COMPILER V9.56.0.0   MAIN                                                              09/21/2017 19:48:40 PAGE 5   
+
+ 230   6                                                      else
+ 231   6                                                      {
+ 232   7                                                              value[0] = 0;
+ 233   7                                                      }
+ 234   6                                              }
+ 235   5                                      }
+ 236   4                              }
+ 237   3                      }
+ 238   2              }
+ 239   1              
+ 240   1              if((value[0] == alarm[0]) && (value[1] == alarm[1]) && (value[2] == alarm[2]) && (value[3] == alar
+             -m[3]))
+ 241   1              {
+ 242   2                      beep = 1;
+ 243   2              }
+ 244   1              else
+ 245   1              {
+ 246   2                      beep = 0;
+ 247   2              }
+ 248   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    658    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     29       3
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

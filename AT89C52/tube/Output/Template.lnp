@@ -1,0 +1,6 @@
+"..\Output\STARTUP.obj",
+"..\Output\main.obj",
+"..\Output\bsp_delay.obj",
+"..\Output\bsp_tube.obj" 
+TO "..\Output\Template" 
+PRINT("..\Listing\Template.m51")

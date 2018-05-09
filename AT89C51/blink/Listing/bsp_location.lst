@@ -1,0 +1,49 @@
+C51 COMPILER V9.56.0.0   BSP_LOCATION                                                      03/23/2017 21:47:56 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE BSP_LOCATION
+OBJECT MODULE PLACED IN ..\Output\bsp_location.obj
+COMPILER INVOKED BY: D:\Program files\AT89C51\C51\BIN\C51.EXE ..\..\2014江西省真题   抢答器\User\bsp_location.c OPTIMIZE
+                    -(8,SPEED) BROWSE INCDIR(..\User) DEBUG OBJECTEXTEND PRINT(..\Listing\bsp_location.lst) TABS(6) OBJECT(..\Output\bsp_loca
+                    -tion.obj)
+
+line level    source
+
+   1          #include "bsp_location.h"
+   2          //while(location==1)
+   3          //          {
+   4          //                
+   5          //                if(j<10)
+   6          //                {
+   7          //                      P0=table[j];
+   8          //                      dula=1;
+   9          //                      dula=0;
+  10          //                      j++;
+  11          //                      delay_ms(1);
+  12          //                }
+  13          //                else
+  14          //                {
+  15          //                      j=0;
+  16          //                      P0=table[j];
+  17          //                      dula=1;
+  18          //                      dula=0;
+  19          //                      j++;
+  20          //                      delay_ms(1);
+  21          //                }
+  22          //                
+  23          //          }
+  24          //          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   ----    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

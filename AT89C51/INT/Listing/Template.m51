@@ -1,0 +1,190 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        04/24/2018  13:07:08  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+D:\PROGRAM FILES\AT89C51\C51\BIN\BL51.EXE ..\Output\STARTUP.obj, ..\Output\main.obj, ..\Output\bsp_delay.obj TO ..\Outpu
+>> t\Template PRINT (..\Listing\Template.m51)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  ..\Output\STARTUP.obj (?C_STARTUP)
+  ..\Output\main.obj (MAIN)
+  ..\Output\bsp_delay.obj (BSP_DELAY)
+  D:\PROGRAM FILES\AT89C51\C51\LIB\C51S.LIB (?C?ULCMP)
+
+
+LINK MAP OF MODULE:  ..\Output\Template (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0008H     UNIT         _DATA_GROUP_
+            IDATA   0010H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0003H     ABSOLUTE     
+                    0006H     000DH                  *** GAP ***
+            CODE    0013H     0003H     ABSOLUTE     
+                    0016H     07EAH                  *** GAP ***
+            CODE    0800H     0051H     UNIT         ?PR?_DELAY?BSP_DELAY
+            CODE    0851H     0042H     UNIT         ?PR?TIM0_IRQHANDER?MAIN
+            CODE    0893H     0042H     UNIT         ?PR?TIM1_IRQHANDER?MAIN
+            CODE    08D5H     0011H     UNIT         ?C?LIB_CODE
+            CODE    08E6H     000EH     UNIT         ?PR?MAIN?MAIN
+            CODE    08F4H     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   ..\Output\Template (?C_STARTUP)
+
+
+SEGMENT                           DATA_GROUP 
+  +--> CALLED SEGMENT           START    LENGTH
+-----------------------------------------------
+?C_C51STARTUP                   -----    -----
+  +--> ?PR?MAIN?MAIN
+
+*** NEW ROOT ***************************************************
+
+?PR?TIM0_IRQHANDER?MAIN         -----    -----
+  +--> ?PR?_DELAY?BSP_DELAY
+
+?PR?_DELAY?BSP_DELAY            000CH    0004H
+
+*** NEW ROOT ***************************************************
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/24/2018  13:07:08  PAGE 2
+
+
+
+?PR?TIM1_IRQHANDER?MAIN         -----    -----
+  +--> ?PR?_DELAY?BSP_DELAY
+
+
+
+SYMBOL TABLE OF MODULE:  ..\Output\Template (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:08F4H         SEGMENT       ?C_C51STARTUP
+  I:0010H         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:08F7H         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:08F4H         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:08F4H         LINE#         133
+  C:08F6H         LINE#         134
+  C:08F7H         LINE#         135
+  C:08F8H         LINE#         136
+  C:08FAH         LINE#         185
+  C:08FDH         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  C:08E6H         PUBLIC        main
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  C:0851H         PUBLIC        TIM0_IRQHander
+  C:0893H         PUBLIC        TIM1_IRQHander
+  B:0088H.0       PUBLIC        IT0
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/24/2018  13:07:08  PAGE 3
+
+
+  B:0088H.2       PUBLIC        IT1
+  B:00B8H.2       PUBLIC        PX1
+  D:00C8H         PUBLIC        T2CON
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          MAIN
+  C:08E6H         LINE#         4
+  C:08E6H         LINE#         5
+  C:08E6H         LINE#         6
+  C:08E8H         LINE#         7
+  C:08EAH         LINE#         8
+  C:08EDH         LINE#         10
+  C:08EFH         LINE#         12
+  C:08EFH         LINE#         13
+  C:08EFH         LINE#         14
+  C:08F2H         LINE#         15
+  -------         ENDPROC       MAIN
+  -------         PROC          TIM0_IRQHANDER
+  C:0851H         LINE#         18
+  C:086EH         LINE#         20
+  C:0871H         LINE#         21
+  C:0878H         LINE#         22
+  -------         ENDPROC       TIM0_IRQHANDER
+  -------         PROC          TIM1_IRQHANDER
+  C:0893H         LINE#         24
+  C:08B0H         LINE#         26
+  C:08B3H         LINE#         27
+  C:08BAH         LINE#         28
+  -------         ENDPROC       TIM1_IRQHANDER
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        BSP_DELAY
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:0800H         PUBLIC        _delay
+  -------         PROC          _DELAY
+  D:0082H         SYMBOL        ms
+  -------         DO            
+  D:000CH         SYMBOL        temp
+  -------         ENDDO         
+  C:0800H         LINE#         3
+  C:0804H         LINE#         4
+  C:0804H         LINE#         7
+  C:080FH         LINE#         8
+  C:080FH         LINE#         9
+  C:0846H         LINE#         10
+  C:0850H         LINE#         11
+  -------         ENDPROC       _DELAY
+  -------         ENDMOD        BSP_DELAY
+
+  -------         MODULE        ?C?ULCMP
+  C:08D5H         PUBLIC        ?C?ULCMP
+  -------         ENDMOD        ?C?ULCMP
+
+*** WARNING L15: MULTIPLE CALL TO SEGMENT
+    SEGMENT: ?PR?_DELAY?BSP_DELAY
+    CALLER1: ?PR?TIM0_IRQHANDER?MAIN
+    CALLER2: ?PR?TIM1_IRQHANDER?MAIN
+
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/24/2018  13:07:08  PAGE 4
+
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 00F8H BYTE (12%) *
+******************************************************************************
+
+Program Size: data=17.0 xdata=0 code=265
+LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)

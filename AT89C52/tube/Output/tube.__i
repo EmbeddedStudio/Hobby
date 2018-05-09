@@ -1,0 +1,1 @@
+"..\User\tube.c" OPTIMIZE (8,SPEED) BROWSE INCDIR(..\User) DEBUG OBJECTEXTEND PRINT(..\Listing\tube.lst) TABS (6) OBJECT(..\Output\tube.obj)

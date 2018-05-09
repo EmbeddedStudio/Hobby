@@ -1,0 +1,156 @@
+C51 COMPILER V9.56.0.0   MAIN                                                              12/29/2016 20:52:04 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN ..\Output\main.obj
+COMPILER INVOKED BY: D:\program Files\C51\BIN\C51.EXE ..\User\main.c OPTIMIZE(8,SPEED) BROWSE INCDIR(..\User) DEBUG OBJE
+                    -CTEXTEND PRINT(..\Listing\main.lst) TABS(8) OBJECT(..\Output\main.obj)
+
+line level    source
+
+   1          #include <reg51.h>
+   2          #include "bsp_delay.h"
+   3          
+   4          #define u32 unsigned int 
+   5          #define u8 unsigned char 
+   6          
+   7          // MVC Model View Control
+   8          sbit dula=P2^6;
+   9          sbit wela=P2^7;
+  10          sbit s2 = P3^4;
+  11          sbit s3 = P3^5;
+  12          sbit s4 = P3^6;
+  13          sbit s5 = P3^7;
+  14          #define FLIKER_ON 1
+  15          #define FLIKER_OFF 0
+  16                  
+  17          void key_scan();
+  18          u8 flag = FLIKER_OFF;
+  19          
+  20          u8 location,num,wei;
+  21          selected[]={
+  22          0xff,0xfe,0xfd,0xfb,
+  23          0xf7,0xef,0xdf,};
+  24          table[]={
+  25          0x3f,0x06,0x5b,0x4f,
+  26          0x66,0x6d,0x7d,0x07,
+  27          0x7f,0x6f,0x77,};
+  28          void main()
+  29          {
+  30   1              wei=1;
+  31   1              location=0;
+  32   1              while(1)
+  33   1              {
+  34   2                      
+  35   2                      wela=1;
+  36   2                      P0 = selected[wei];
+  37   2                      wela=0;
+  38   2                      dula=1;
+  39   2                      P0 = table[location];
+  40   2                      dula=0;
+  41   2                      
+  42   2                      delay_ms(50);
+  43   2                      key_scan();
+  44   2                      if(FLIKER_ON == flag)
+  45   2                      {
+  46   3                              wela=1;
+  47   3                              P0 = selected[wei];
+  48   3                              wela=0;
+  49   3                              delay_ms(50);
+  50   3                      }
+  51   2              }
+  52   1      }
+  53          
+  54          void key_scan()
+C51 COMPILER V9.56.0.0   MAIN                                                              12/29/2016 20:52:04 PAGE 2   
+
+  55          {
+  56   1              
+  57   1              if(0 == s4)
+  58   1              {
+  59   2                      // 按键消抖
+  60   2                      delay_ms(1);
+  61   2                      if(0 == s4)
+  62   2                      {
+  63   3                              if(0==wei)
+  64   3                              {
+  65   4                                      if(9 != location)
+  66   4                                      {
+  67   5                                              location = location +1;
+  68   5                                      }
+  69   4                              }
+  70   3                      }
+  71   2                      
+  72   2                      // 松手检测
+  73   2                      while(0 == s4);
+  74   2                      
+  75   2              }
+  76   1              
+  77   1              if(0 == s3)
+  78   1              {
+  79   2                      // 按键消抖
+  80   2                      delay_ms(1);
+  81   2                      if(0 == s3)
+  82   2                      {
+  83   3                              flag = !flag;
+  84   3                      }
+  85   2                      
+  86   2                      // 松手检测
+  87   2                      while(0 == s3);
+  88   2                      
+  89   2              }
+  90   1      
+  91   1              if(0 == s2)
+  92   1              {
+  93   2                      // 按键消抖
+  94   2                      delay_ms(1);
+  95   2                      if(0 == s2)
+  96   2                      {
+  97   3                              if(0 != location)
+  98   3                              {
+  99   4                                      location = location - 1;
+ 100   4                              }
+ 101   3                      }
+ 102   2                      
+ 103   2                      // 松手检测
+ 104   2                      while(0 == s2);
+ 105   2              }
+ 106   1              if(0 == s5)
+ 107   1              {
+ 108   2                      // 按键消抖
+ 109   2                      delay_ms(1);
+ 110   2                      if(0 == s5)
+ 111   2                      {
+ 112   3                              if(6 != wei)
+ 113   3                              {
+ 114   4                                      wei = wei + 1;
+ 115   4                              }
+ 116   3                              else if (6==wei)
+C51 COMPILER V9.56.0.0   MAIN                                                              12/29/2016 20:52:04 PAGE 3   
+
+ 117   3                              {
+ 118   4                                      wei=wei-5;
+ 119   4                              }       
+ 120   3                      }
+ 121   2                      
+ 122   2                      // 松手检测
+ 123   2                      while(0 == s5);
+ 124   2              }
+ 125   1      }
+ 126          
+ 127          
+ 128          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    177    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     40    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

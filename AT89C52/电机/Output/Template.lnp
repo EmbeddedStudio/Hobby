@@ -1,0 +1,4 @@
+COMMON {"..\Output\STARTUP.obj"},
+COMMON {"..\Output\main.obj"} 
+TO "..\Output\Template" BankArea(0x0000,0xFFFF) 
+PRINT("..\Listing\Template.m51")

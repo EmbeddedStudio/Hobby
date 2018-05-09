@@ -1,0 +1,1 @@
+"..\User\bsp_delay.c" OPTIMIZE (8,SPEED) BROWSE INCDIR(..\User) DEBUG OBJECTEXTEND PRINT(..\Listing\bsp_delay.lst) TABS (8) OBJECT(..\Output\bsp_delay.obj)

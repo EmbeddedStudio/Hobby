@@ -1,0 +1,240 @@
+C51 COMPILER V9.56.0.0   BSP_KEY                                                           09/21/2017 19:48:40 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE BSP_KEY
+OBJECT MODULE PLACED IN ..\Output\bsp_key.obj
+COMPILER INVOKED BY: D:\Program Files\AT89C51\C51\BIN\C51.EXE ..\User\bsp_key.c OPTIMIZE(8,SPEED) BROWSE INCDIR(..\User)
+                    - DEBUG OBJECTEXTEND PRINT(..\Listing\bsp_key.lst) TABS(8) OBJECT(..\Output\bsp_key.obj)
+
+line level    source
+
+   1          #include "bsp_key.h"
+   2          #include "bsp_delay.h"
+   3          
+   4          /** 
+   5           * @Description 按键扫描函数(8个按键同时扫描)
+   6           * @return u8   按键键值
+   7           */
+   8          u8 Key_Scan(void)
+   9          {
+  10   1              /* 保存按键键值的变量，默认值0xff表示没有按键按下 */
+  11   1              u8 keyValue = 0xff;
+  12   1      
+  13   1              /* 用于松手检测的累加变量 */
+  14   1              int i = 0;
+  15   1      
+  16   1              /* 这里在1ms前后检测两边是为了滤除按键抖动产生的尖峰脉冲 */
+  17   1              if(GPIO_KEY != 0xff)
+  18   1              {
+  19   2                      delay(1);
+  20   2      
+  21   2                      /* 如果1ms前后检测都是低电平的话，就说明是真的有按键按下 */
+  22   2                      if(GPIO_KEY != 0xff)
+  23   2                      {
+  24   3                              /* 真的有按键按下，则将按键键值存入keyValue中 */
+  25   3                              keyValue = GPIO_KEY;
+  26   3      
+  27   3                              /* 这里是松手检测，在20ms内按键没有放开，程序会一直停在此
+             -处 */
+  28   3                              /* 倘若50ms期间，松开了按键，则会跳出此while循环 */
+  29   3                              /* 也就是说：按键没有松开的话，程序不会去做其他的事情 */
+  30   3                              /* 当然也有松手检测的超时时间，就是我们设置的20ms */
+  31   3                              while((i < 20) && (GPIO_KEY != 0xff))
+  32   3                              {
+  33   4                                      delay(1);
+  34   4                                      i++;
+  35   4                              }
+  36   3                      }
+  37   2              }
+  38   1      
+  39   1              /* 返回按键的键值，通过解析这个键值，就能知道是哪一个按键按下 */
+  40   1              return keyValue;
+  41   1      }
+  42          
+  43          /** 
+  44           * @Description 简单延时函数，它存在的目的是为了解决函数重入的问题
+  45           */
+  46          void delay(u32 t)
+  47          {
+  48   1              u32 i, j;
+  49   1              for(i = t; i > 0; i--)
+  50   1                      for(j = 296; j > 0; j--);
+  51   1      }
+  52          
+  53          /* 这里需要使用extern声明其他c文件定义的变量 */
+C51 COMPILER V9.56.0.0   BSP_KEY                                                           09/21/2017 19:48:40 PAGE 2   
+
+  54          extern u8 value[6];
+  55          extern u8 location;
+  56          extern u8 state;
+  57          extern u8 alarm[4];
+  58          
+  59          /** 
+  60           * @Description 按键控制函数(8个按键同时控制)
+  61           * @param u8    按键扫描到的键值
+  62           */
+  63          void Key_Control(u8 keyValue)
+  64          {
+  65   1              /* 根据捕捉的键值解析出按下的键，并作出相应的处理 */
+  66   1              switch(keyValue)
+  67   1              {
+  68   2                      case(0xfe):     // 1111 1110 P2.0口对应按键按下 K0 数值减
+  69   2                              if(state == STATE_SETTING)
+  70   2                              {
+  71   3                                      if(value[location] > 0)
+  72   3                                      {
+  73   4                                              value[location] -= 1;
+  74   4                                      }
+  75   3                              }
+  76   2                              else if(state == STATE_ALARM)
+  77   2                              {
+  78   3                                      if(alarm[location] > 0)
+  79   3                                      {
+  80   4                                              alarm[location] -= 1;
+  81   4                                      }
+  82   3                              }
+  83   2                              break;
+  84   2                      
+  85   2                      case(0xfd):     // 1111 1101 P2.1口对应按键按下 K1 数值加
+  86   2                              if(state == STATE_SETTING)
+  87   2                              {
+  88   3                                      switch(location)
+  89   3                                      {
+  90   4                                              case (0):
+  91   4                                                      if(value[0] < 2)
+  92   4                                                      {
+  93   5                                                              value[0] += 1;
+  94   5                                                      }
+  95   4                                                      
+  96   4                                                      if(value[0] == 2 && value[1] > 3)
+  97   4                                                      {
+  98   5                                                              value[1] = 3;
+  99   5                                                      }
+ 100   4                                                      
+ 101   4                                                      break;
+ 102   4                                              case (1):
+ 103   4                                                      if(value[0] < 2 && value[1] < 9)
+ 104   4                                                      {
+ 105   5                                                              value[1] += 1;
+ 106   5                                                      }
+ 107   4                                                      else if(value[0] == 2 && value[1] < 3)
+ 108   4                                                      {
+ 109   5                                                              value[1] += 1;
+ 110   5                                                      }
+ 111   4                                                      break;
+ 112   4                                              case (2):
+ 113   4                                              case (4):
+ 114   4                                                      if(value[location] < 5)
+ 115   4                                                      {
+C51 COMPILER V9.56.0.0   BSP_KEY                                                           09/21/2017 19:48:40 PAGE 3   
+
+ 116   5                                                              value[location] += 1;
+ 117   5                                                      }
+ 118   4                                                      break;
+ 119   4                                              case (3):
+ 120   4                                              case (5):
+ 121   4                                                      if(value[location] < 9)
+ 122   4                                                      {
+ 123   5                                                              value[location] += 1;
+ 124   5                                                      }
+ 125   4                                                      break;
+ 126   4                                      }
+ 127   3                              }
+ 128   2                              else if(state == STATE_ALARM)
+ 129   2                              {
+ 130   3                                      switch(location)
+ 131   3                                      {
+ 132   4                                              case (0):
+ 133   4                                                      if(alarm[0] < 2)
+ 134   4                                                      {
+ 135   5                                                              alarm[0] += 1;
+ 136   5                                                      }
+ 137   4                                                      
+ 138   4                                                      if(alarm[0] == 2 && alarm[1] > 3)
+ 139   4                                                      {
+ 140   5                                                              alarm[1] = 3;
+ 141   5                                                      }
+ 142   4                                                      
+ 143   4                                                      break;
+ 144   4                                              case (1):
+ 145   4                                                      if(alarm[0] < 2 && alarm[1] < 9)
+ 146   4                                                      {
+ 147   5                                                              alarm[1] += 1;
+ 148   5                                                      }
+ 149   4                                                      else if(alarm[0] == 2 && alarm[1] < 3)
+ 150   4                                                      {
+ 151   5                                                              alarm[1] += 1;
+ 152   5                                                      }
+ 153   4                                                      break;
+ 154   4                                              case (2):
+ 155   4                                                      if(alarm[location] < 5)
+ 156   4                                                      {
+ 157   5                                                              alarm[location] += 1;
+ 158   5                                                      }
+ 159   4                                                      break;
+ 160   4                                              case (3):
+ 161   4                                                      if(alarm[location] < 9)
+ 162   4                                                      {
+ 163   5                                                              alarm[location] += 1;
+ 164   5                                                      }
+ 165   4                                                      break;
+ 166   4                                      }
+ 167   3                              }
+ 168   2                              break;
+ 169   2                      case(0xfb):     // 1111 1011 P2.2口对应按键按下 K2 右移
+ 170   2                              if(state == STATE_SETTING)
+ 171   2                              {
+ 172   3                                      location += 1;
+ 173   3                                      if(location == 6)
+ 174   3                                      {
+ 175   4                                              location = 0;
+ 176   4                                      }
+ 177   3                              }
+C51 COMPILER V9.56.0.0   BSP_KEY                                                           09/21/2017 19:48:40 PAGE 4   
+
+ 178   2                              else if(state == STATE_ALARM)
+ 179   2                              {
+ 180   3                                      location += 1;
+ 181   3                                      
+ 182   3                                      /* 因为我们设置闹钟的时候只有时和分，所以只有4位 */
+ 183   3                                      if(location == 4)
+ 184   3                                      {
+ 185   4                                              location = 0;
+ 186   4                                      }
+ 187   3                              }
+ 188   2                              break;
+ 189   2                      case(0xf7):     // 1111 0111 P2.3口对应按键按下 K3 状态切换
+ 190   2                              switch(state)
+ 191   2                              {
+ 192   3                                      case(STATE_RUNNING):
+ 193   3                                              state = STATE_SETTING;
+ 194   3                                              location = 0;
+ 195   3                                              TR0 = 0;
+ 196   3                                              break;
+ 197   3                                      case(STATE_SETTING):
+ 198   3                                              state = STATE_ALARM;
+ 199   3                                              location = 0;
+ 200   3                                              TR0 = 0;
+ 201   3                                              break;
+ 202   3                                      case(STATE_ALARM):
+ 203   3                                              state = STATE_RUNNING;
+ 204   3                                              TR0 = 1;
+ 205   3                                              break;
+ 206   3                              }
+ 207   2                              break;
+ 208   2              }
+ 209   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    566    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      11
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
