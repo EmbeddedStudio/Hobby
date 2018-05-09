@@ -1,0 +1,66 @@
+--------------------------------------------------------------------------------------
+Timing Analyzer Summary
+--------------------------------------------------------------------------------------
+
+Type           : Worst-case tsu
+Slack          : N/A
+Required Time  : None
+Actual Time    : 3.761 ns
+From           : Btn2In
+To             : Button2Module:comb_8|switch:comb_3|keyout2
+From Clock     : --
+To Clock       : clk50mHZ
+Failed Paths   : 0
+
+Type           : Worst-case tco
+Slack          : N/A
+Required Time  : None
+Actual Time    : 15.481 ns
+From           : tube:comb_5|sele[1]
+To             : LED7S[7]
+From Clock     : clk50mHZ
+To Clock       : --
+Failed Paths   : 0
+
+Type           : Worst-case th
+Slack          : N/A
+Required Time  : None
+Actual Time    : 1.570 ns
+From           : AD_DATA
+To             : TLC549:comb_14|BUF[1]
+From Clock     : --
+To Clock       : clk50mHZ
+Failed Paths   : 0
+
+Type           : Clock Setup: 'clk50mHZ'
+Slack          : N/A
+Required Time  : None
+Actual Time    : 149.75 MHz ( period = 6.678 ns )
+From           : Button1Module:comb_7|ModelState2[1]
+To             : TLC549:comb_14|adclk
+From Clock     : clk50mHZ
+To Clock       : clk50mHZ
+Failed Paths   : 0
+
+Type           : Clock Hold: 'clk50mHZ'
+Slack          : Not operational: Clock Skew > Data Delay
+Required Time  : None
+Actual Time    : N/A
+From           : clk:comb_3|clk2
+To             : view:comb_6|TubeValue[16]
+From Clock     : clk50mHZ
+To Clock       : clk50mHZ
+Failed Paths   : 112
+
+Type           : Total number of failed paths
+Slack          : 
+Required Time  : 
+Actual Time    : 
+From           : 
+To             : 
+From Clock     : 
+To Clock       : 
+Failed Paths   : 112
+
+--------------------------------------------------------------------------------------
+

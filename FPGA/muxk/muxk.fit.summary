@@ -1,0 +1,16 @@
+Fitter Status : Successful - Wed Sep 27 19:54:22 2017
+Quartus II 64-Bit Version : 9.1 Build 350 03/24/2010 SP 2 SJ Full Version
+Revision Name : muxk
+Top-level Entity Name : muxk
+Family : Cyclone II
+Device : EP2C8Q208C8
+Timing Models : Final
+Total logic elements : 26 / 8,256 ( < 1 % )
+    Total combinational functions : 26 / 8,256 ( < 1 % )
+    Dedicated logic registers : 24 / 8,256 ( < 1 % )
+Total registers : 24
+Total pins : 4 / 138 ( 3 % )
+Total virtual pins : 0
+Total memory bits : 0 / 165,888 ( 0 % )
+Embedded Multiplier 9-bit elements : 0 / 36 ( 0 % )
+Total PLLs : 0 / 2 ( 0 % )

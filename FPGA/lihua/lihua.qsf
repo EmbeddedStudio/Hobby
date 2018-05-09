@@ -1,0 +1,74 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 1991-2010 Altera Corporation
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, Altera MegaCore Function License 
+# Agreement, or other applicable license agreement, including, 
+# without limitation, that your use is for the sole purpose of 
+# programming logic devices manufactured by Altera and sold by 
+# Altera or its authorized distributors.  Please refer to the 
+# applicable agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus II 64-Bit
+# Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Full Version
+# Date created = 18:03:15  October 21, 2017
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		lihua_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus II software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "Cyclone II"
+set_global_assignment -name DEVICE EP2C8Q208C8
+set_global_assignment -name TOP_LEVEL_ENTITY lihua
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION "9.1 SP2"
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "18:03:15  OCTOBER 21, 2017"
+set_global_assignment -name LAST_QUARTUS_VERSION "9.1 SP2"
+set_global_assignment -name USE_GENERATED_PHYSICAL_CONSTRAINTS OFF -section_id eda_blast_fpga
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name VERILOG_FILE lihua.v
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name LL_ROOT_REGION ON -section_id "Root Region"
+set_global_assignment -name LL_MEMBER_STATE LOCKED -section_id "Root Region"
+set_location_assignment PIN_114 -to ena
+set_location_assignment PIN_113 -to rst
+set_location_assignment PIN_23 -to clk1
+set_location_assignment PIN_170 -to LED7[0]
+set_location_assignment PIN_165 -to LED7[1]
+set_location_assignment PIN_169 -to LED7[2]
+set_location_assignment PIN_175 -to LED7[3]
+set_location_assignment PIN_173 -to LED7[4]
+set_location_assignment PIN_168 -to LED7[5]
+set_location_assignment PIN_164 -to LED7[6]
+set_location_assignment PIN_171 -to LED7[7]
+set_location_assignment PIN_150 -to dig1[0]
+set_location_assignment PIN_149 -to dig1[1]
+set_location_assignment PIN_152 -to dig1[2]
+set_location_assignment PIN_151 -to dig1[3]
+set_location_assignment PIN_205 -to dig1[4]
+set_location_assignment PIN_206 -to dig1[5]
+set_location_assignment PIN_207 -to dig1[6]
+set_location_assignment PIN_208 -to dig1[7]
+set_global_assignment -name SIMULATION_MODE FUNCTIONAL
+set_global_assignment -name USE_CONFIGURATION_DEVICE ON
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

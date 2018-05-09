@@ -1,0 +1,19 @@
+module jianfa_4 (load,data,res,clk,out);
+	input load,res,clk;
+	input [3:0] data;
+	output out;
+	reg [3:0] out ;
+	always @(posedge clk or negedge res )
+	begin
+		if(!res)
+		out<=0;
+		
+		else if(load)
+		out<=data;
+		
+		else
+		out<=out-1;
+		
+	end
+endmodule	
+	

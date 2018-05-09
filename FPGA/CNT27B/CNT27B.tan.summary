@@ -1,0 +1,56 @@
+--------------------------------------------------------------------------------------
+Timing Analyzer Summary
+--------------------------------------------------------------------------------------
+
+Type           : Worst-case tsu
+Slack          : N/A
+Required Time  : None
+Actual Time    : 5.011 ns
+From           : ena0
+To             : sout[26]
+From Clock     : --
+To Clock       : clkin
+Failed Paths   : 0
+
+Type           : Worst-case tco
+Slack          : N/A
+Required Time  : None
+Actual Time    : 7.234 ns
+From           : sout[25]
+To             : out[2]
+From Clock     : clkin
+To Clock       : --
+Failed Paths   : 0
+
+Type           : Worst-case th
+Slack          : N/A
+Required Time  : None
+Actual Time    : -4.346 ns
+From           : ena0
+To             : sout[1]
+From Clock     : --
+To Clock       : clkin
+Failed Paths   : 0
+
+Type           : Clock Setup: 'clkin'
+Slack          : N/A
+Required Time  : None
+Actual Time    : 202.63 MHz ( period = 4.935 ns )
+From           : sout[0]
+To             : sout[26]
+From Clock     : clkin
+To Clock       : clkin
+Failed Paths   : 0
+
+Type           : Total number of failed paths
+Slack          : 
+Required Time  : 
+Actual Time    : 
+From           : 
+To             : 
+From Clock     : 
+To Clock       : 
+Failed Paths   : 0
+
+--------------------------------------------------------------------------------------
+

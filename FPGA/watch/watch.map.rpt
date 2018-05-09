@@ -1,0 +1,473 @@
+Analysis & Synthesis report for watch
+Sat Feb 03 18:07:57 2018
+Quartus II 64-Bit Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Full Version
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Registers Removed During Synthesis
+  9. Removed Registers Triggering Further Register Optimizations
+ 10. General Register Statistics
+ 11. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 12. Parameter Settings for User Entity Instance: Button1Module:comb_7|switch:comb_3
+ 13. Parameter Settings for User Entity Instance: Button2Module:comb_8|switch:comb_3
+ 14. Parameter Settings for User Entity Instance: Button3Module:comb_9|switch:comb_3
+ 15. Parameter Settings for User Entity Instance: beepModule:comb_10
+ 16. Port Connectivity Checks: "Button3Module:comb_9"
+ 17. Port Connectivity Checks: "clk:comb_3"
+ 18. Analysis & Synthesis Messages
+ 19. Analysis & Synthesis Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2010 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++-------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                  ;
++-------------------------------+-----------------------------------------------+
+; Analysis & Synthesis Status   ; Successful - Sat Feb 03 18:07:57 2018         ;
+; Quartus II 64-Bit Version     ; 9.1 Build 350 03/24/2010 SP 2 SJ Full Version ;
+; Revision Name                 ; watch                                         ;
+; Top-level Entity Name         ; watch                                         ;
+; Family                        ; Stratix II                                    ;
+; Logic utilization             ; N/A                                           ;
+;     Combinational ALUTs       ; 575                                           ;
+;     Dedicated logic registers ; 324                                           ;
+; Total registers               ; 324                                           ;
+; Total pins                    ; 32                                            ;
+; Total virtual pins            ; 0                                             ;
+; Total block memory bits       ; 0                                             ;
+; DSP block 9-bit elements      ; 0                                             ;
+; Total PLLs                    ; 0                                             ;
+; Total DLLs                    ; 0                                             ;
++-------------------------------+-----------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Top-level entity name                                                      ; watch              ; watch              ;
+; Family name                                                                ; Stratix II         ; Stratix II         ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                 ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM Block Balancing                                                   ; On                 ; On                 ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; Off                ; Off                ;
+; Show Parameter Settings Tables in Synthesis Report                         ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization                                               ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 2           ;
+; Maximum allowed            ; 2           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     1 processor            ; 100.0%      ;
+;     2 processors           ;   0.0%      ;
++----------------------------+-------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                  ;
++----------------------------------+-----------------+------------------------------+-------------------------------------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path        ;
++----------------------------------+-----------------+------------------------------+-------------------------------------+
+; watch.v                          ; yes             ; Auto-Found Verilog HDL File  ; C:/Users/life/Desktop/watch/watch.v ;
++----------------------------------+-----------------+------------------------------+-------------------------------------+
+
+
++----------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary              ;
++-----------------------------------------------+----------+
+; Resource                                      ; Usage    ;
++-----------------------------------------------+----------+
+; Estimated ALUTs Used                          ; 575      ;
+; Dedicated logic registers                     ; 324      ;
+;                                               ;          ;
+; Estimated ALUTs Unavailable                   ; 71       ;
+;                                               ;          ;
+; Total combinational functions                 ; 575      ;
+; Combinational ALUT usage by number of inputs  ;          ;
+;     -- 7 input functions                      ; 2        ;
+;     -- 6 input functions                      ; 78       ;
+;     -- 5 input functions                      ; 79       ;
+;     -- 4 input functions                      ; 78       ;
+;     -- <=3 input functions                    ; 338      ;
+;                                               ;          ;
+; Combinational ALUTs by mode                   ;          ;
+;     -- normal mode                            ; 366      ;
+;     -- extended LUT mode                      ; 2        ;
+;     -- arithmetic mode                        ; 199      ;
+;     -- shared arithmetic mode                 ; 8        ;
+;                                               ;          ;
+; Estimated ALUT/register pairs used            ; 657      ;
+;                                               ;          ;
+; Total registers                               ; 324      ;
+;     -- Dedicated logic registers              ; 324      ;
+;     -- I/O registers                          ; 0        ;
+;                                               ;          ;
+; Estimated ALMs:  partially or completely used ; 329      ;
+;                                               ;          ;
+; I/O pins                                      ; 32       ;
+; Maximum fan-out node                          ; clk50mHZ ;
+; Maximum fan-out                               ; 150      ;
+; Total fan-out                                 ; 2898     ;
+; Average fan-out                               ; 3.11     ;
++-----------------------------------------------+----------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                 ;
++----------------------------+-------------------+--------------+-------------------+--------------+---------+-----------+-----------+------+--------------+-------------------------------------------+--------------+
+; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Block Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; DSP 36x36 ; Pins ; Virtual Pins ; Full Hierarchy Name                       ; Library Name ;
++----------------------------+-------------------+--------------+-------------------+--------------+---------+-----------+-----------+------+--------------+-------------------------------------------+--------------+
+; |watch                     ; 575 (1)           ; 324 (0)      ; 0                 ; 0            ; 0       ; 0         ; 0         ; 32   ; 0            ; |watch                                    ; work         ;
+;    |AlarmModule:comb_12|   ; 75 (75)           ; 35 (35)      ; 0                 ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |watch|AlarmModule:comb_12                ; work         ;
+;    |Button1Module:comb_7|  ; 49 (2)            ; 23 (2)       ; 0                 ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |watch|Button1Module:comb_7               ; work         ;
+;       |switch:comb_3|      ; 47 (47)           ; 21 (21)      ; 0                 ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |watch|Button1Module:comb_7|switch:comb_3 ;              ;
+;    |Button2Module:comb_8|  ; 52 (5)            ; 26 (5)       ; 0                 ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |watch|Button2Module:comb_8               ; work         ;
+;       |switch:comb_3|      ; 47 (47)           ; 21 (21)      ; 0                 ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |watch|Button2Module:comb_8|switch:comb_3 ;              ;
+;    |Button3Module:comb_9|  ; 47 (0)            ; 21 (0)       ; 0                 ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |watch|Button3Module:comb_9               ; work         ;
+;       |switch:comb_3|      ; 47 (47)           ; 21 (21)      ; 0                 ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |watch|Button3Module:comb_9|switch:comb_3 ;              ;
+;    |LEDModule:comb_11|     ; 3 (3)             ; 0 (0)        ; 0                 ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |watch|LEDModule:comb_11                  ;              ;
+;    |StopModule:comb_13|    ; 34 (34)           ; 22 (22)      ; 0                 ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |watch|StopModule:comb_13                 ;              ;
+;    |TLC549:comb_14|        ; 36 (36)           ; 24 (24)      ; 0                 ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |watch|TLC549:comb_14                     ; work         ;
+;    |beepModule:comb_10|    ; 19 (19)           ; 12 (12)      ; 0                 ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |watch|beepModule:comb_10                 ; work         ;
+;    |clk:comb_3|            ; 105 (105)         ; 87 (87)      ; 0                 ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |watch|clk:comb_3                         ;              ;
+;    |clockModule:comb_4|    ; 73 (73)           ; 47 (47)      ; 0                 ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |watch|clockModule:comb_4                 ;              ;
+;    |tube:comb_5|           ; 39 (39)           ; 3 (3)        ; 0                 ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |watch|tube:comb_5                        ; work         ;
+;    |view:comb_6|           ; 42 (42)           ; 24 (24)      ; 0                 ; 0            ; 0       ; 0         ; 0         ; 0    ; 0            ; |watch|view:comb_6                        ;              ;
++----------------------------+-------------------+--------------+-------------------+--------------+---------+-----------+-----------+------+--------------+-------------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++----------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                           ;
++------------------------------------------+---------------------------------------------------+
+; Register name                            ; Reason for Removal                                ;
++------------------------------------------+---------------------------------------------------+
+; TLC549:comb_14|BUF[0]                    ; Stuck at GND due to stuck port data_in            ;
+; TLC549:comb_14|BUF2[0]                   ; Stuck at GND due to stuck port data_in            ;
+; Button2Module:comb_8|Button2State2[6..7] ; Merged with Button2Module:comb_8|Button2State2[5] ;
+; Button2Module:comb_8|Button2State2[5]    ; Stuck at GND due to stuck port data_in            ;
+; tube:comb_5|sele[3]                      ; Stuck at GND due to stuck port data_in            ;
+; beepModule:comb_10|sound                 ; Merged with tube:comb_5|sele[0]                   ;
+; Button1Module:comb_7|ModelState2[3]      ; Stuck at GND due to stuck port data_in            ;
+; Button2Module:comb_8|Button2State2[3,11] ; Stuck at GND due to stuck port data_in            ;
+; Button1Module:comb_7|ModelState2[2]      ; Stuck at GND due to stuck port data_in            ;
+; Button2Module:comb_8|Button2State2[10]   ; Stuck at GND due to stuck port data_in            ;
+; AlarmModule:comb_12|Alarm[7]             ; Stuck at GND due to stuck port data_in            ;
+; clockModule:comb_4|Time[15]              ; Stuck at GND due to stuck port data_in            ;
+; AlarmModule:comb_12|Alarm[15]            ; Stuck at GND due to stuck port data_in            ;
+; StopModule:comb_13|Stop[15,23]           ; Stuck at GND due to stuck port data_in            ;
+; Button2Module:comb_8|Button2State2[2]    ; Stuck at GND due to stuck port data_in            ;
+; TLC549:comb_14|cnt[3]                    ; Stuck at GND due to stuck port data_in            ;
+; clockModule:comb_4|Time[7]               ; Stuck at GND due to stuck port data_in            ;
+; Total Number of Removed Registers = 20   ;                                                   ;
++------------------------------------------+---------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                      ;
++----------------------------------------+---------------------------+-------------------------------------------------------------+
+; Register name                          ; Reason for Removal        ; Registers Removed due to This Register                      ;
++----------------------------------------+---------------------------+-------------------------------------------------------------+
+; Button2Module:comb_8|Button2State2[11] ; Stuck at GND              ; AlarmModule:comb_12|Alarm[7], AlarmModule:comb_12|Alarm[15] ;
+;                                        ; due to stuck port data_in ;                                                             ;
+; TLC549:comb_14|BUF[0]                  ; Stuck at GND              ; TLC549:comb_14|BUF2[0]                                      ;
+;                                        ; due to stuck port data_in ;                                                             ;
+; Button2Module:comb_8|Button2State2[5]  ; Stuck at GND              ; StopModule:comb_13|Stop[23]                                 ;
+;                                        ; due to stuck port data_in ;                                                             ;
++----------------------------------------+---------------------------+-------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 324   ;
+; Number of registers using Synchronous Clear  ; 195   ;
+; Number of registers using Synchronous Load   ; 19    ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 93    ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                   ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                         ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------+
+; 3:1                ; 4 bits    ; 8 ALUTs       ; 8 ALUTs              ; 0 ALUTs                ; Yes        ; |watch|AlarmModule:comb_12|Alarm[16]               ;
+; 3:1                ; 20 bits   ; 40 ALUTs      ; 20 ALUTs             ; 20 ALUTs               ; Yes        ; |watch|Button1Module:comb_7|switch:comb_3|count[8] ;
+; 3:1                ; 20 bits   ; 40 ALUTs      ; 20 ALUTs             ; 20 ALUTs               ; Yes        ; |watch|Button3Module:comb_9|switch:comb_3|count[0] ;
+; 3:1                ; 20 bits   ; 40 ALUTs      ; 20 ALUTs             ; 20 ALUTs               ; Yes        ; |watch|Button2Module:comb_8|switch:comb_3|count[2] ;
+; 4:1                ; 4 bits    ; 8 ALUTs       ; 8 ALUTs              ; 0 ALUTs                ; Yes        ; |watch|StopModule:comb_13|Stop[1]                  ;
+; 5:1                ; 4 bits    ; 12 ALUTs      ; 8 ALUTs              ; 4 ALUTs                ; Yes        ; |watch|StopModule:comb_13|Stop[5]                  ;
+; 6:1                ; 4 bits    ; 16 ALUTs      ; 8 ALUTs              ; 8 ALUTs                ; Yes        ; |watch|StopModule:comb_13|Stop[11]                 ;
+; 4:1                ; 4 bits    ; 8 ALUTs       ; 8 ALUTs              ; 0 ALUTs                ; Yes        ; |watch|clockModule:comb_4|Time[1]                  ;
+; 7:1                ; 4 bits    ; 16 ALUTs      ; 8 ALUTs              ; 8 ALUTs                ; Yes        ; |watch|StopModule:comb_13|Stop[13]                 ;
+; 5:1                ; 4 bits    ; 12 ALUTs      ; 8 ALUTs              ; 4 ALUTs                ; Yes        ; |watch|clockModule:comb_4|Time[6]                  ;
+; 8:1                ; 4 bits    ; 20 ALUTs      ; 8 ALUTs              ; 12 ALUTs               ; Yes        ; |watch|StopModule:comb_13|Stop[18]                 ;
+; 5:1                ; 4 bits    ; 12 ALUTs      ; 4 ALUTs              ; 8 ALUTs                ; Yes        ; |watch|clockModule:comb_4|Time[10]                 ;
+; 9:1                ; 4 bits    ; 24 ALUTs      ; 8 ALUTs              ; 16 ALUTs               ; Yes        ; |watch|StopModule:comb_13|Stop[21]                 ;
+; 6:1                ; 4 bits    ; 16 ALUTs      ; 4 ALUTs              ; 12 ALUTs               ; Yes        ; |watch|clockModule:comb_4|Time[13]                 ;
+; 8:1                ; 4 bits    ; 20 ALUTs      ; 8 ALUTs              ; 12 ALUTs               ; Yes        ; |watch|clockModule:comb_4|Time[18]                 ;
+; 10:1               ; 4 bits    ; 24 ALUTs      ; 8 ALUTs              ; 16 ALUTs               ; Yes        ; |watch|clockModule:comb_4|Time[22]                 ;
+; 15:1               ; 8 bits    ; 80 ALUTs      ; 24 ALUTs             ; 56 ALUTs               ; Yes        ; |watch|view:comb_6|TubeValue[2]                    ;
+; 15:1               ; 6 bits    ; 60 ALUTs      ; 24 ALUTs             ; 36 ALUTs               ; Yes        ; |watch|view:comb_6|TubeValue[14]                   ;
+; 15:1               ; 2 bits    ; 20 ALUTs      ; 8 ALUTs              ; 12 ALUTs               ; Yes        ; |watch|view:comb_6|TubeValue[9]                    ;
+; 15:1               ; 8 bits    ; 80 ALUTs      ; 24 ALUTs             ; 56 ALUTs               ; Yes        ; |watch|view:comb_6|TubeValue[23]                   ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------+
+
+
++---------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Button1Module:comb_7|switch:comb_3 ;
++----------------+-------+--------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                   ;
++----------------+-------+--------------------------------------------------------+
+; LENGTH         ; 8     ; Signed Integer                                         ;
++----------------+-------+--------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Button2Module:comb_8|switch:comb_3 ;
++----------------+-------+--------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                   ;
++----------------+-------+--------------------------------------------------------+
+; LENGTH         ; 8     ; Signed Integer                                         ;
++----------------+-------+--------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Button3Module:comb_9|switch:comb_3 ;
++----------------+-------+--------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                   ;
++----------------+-------+--------------------------------------------------------+
+; LENGTH         ; 8     ; Signed Integer                                         ;
++----------------+-------+--------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: beepModule:comb_10 ;
++----------------+-------+----------------------------------------+
+; Parameter Name ; Value ; Type                                   ;
++----------------+-------+----------------------------------------+
+; soundspace     ; 300   ; Signed Integer                         ;
+; shotstopspace  ; 200   ; Signed Integer                         ;
+; longstopspace  ; 500   ; Signed Integer                         ;
++----------------+-------+----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Button3Module:comb_9"                                                                                                                                                                 ;
++------------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port       ; Type  ; Severity ; Details                                                                                                                                                                          ;
++------------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; ModelState ; Input ; Warning  ; Input port expression (4 bits) is wider than the input port (2 bits) it drives.  The 2 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
++------------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "clk:comb_3"                                                                           ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; clk1HZ ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 64-Bit Analysis & Synthesis
+    Info: Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Full Version
+    Info: Processing started: Sat Feb 03 18:07:50 2018
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off watch -c watch
+Info: Parallel compilation is enabled and will use 2 of the 2 processors detected
+Warning (10229): Verilog HDL Expression warning at watch.v(419): truncated literal to match 8 bits
+Warning: Using design file watch.v, which is not specified as a design file for the current project, but contains definitions for 14 design units and 14 entities in project
+    Info: Found entity 1: watch
+    Info: Found entity 2: view
+    Info: Found entity 3: clockModule
+    Info: Found entity 4: AlarmModule
+    Info: Found entity 5: StopModule
+    Info: Found entity 6: LEDModule
+    Info: Found entity 7: clk
+    Info: Found entity 8: tube
+    Info: Found entity 9: Button1Module
+    Info: Found entity 10: Button2Module
+    Info: Found entity 11: Button3Module
+    Info: Found entity 12: switch
+    Info: Found entity 13: beepModule
+    Info: Found entity 14: TLC549
+Critical Warning (10846): Verilog HDL Instantiation warning at watch.v(30): instance has no name
+Critical Warning (10846): Verilog HDL Instantiation warning at watch.v(31): instance has no name
+Critical Warning (10846): Verilog HDL Instantiation warning at watch.v(32): instance has no name
+Critical Warning (10846): Verilog HDL Instantiation warning at watch.v(33): instance has no name
+Critical Warning (10846): Verilog HDL Instantiation warning at watch.v(534): instance has no name
+Critical Warning (10846): Verilog HDL Instantiation warning at watch.v(34): instance has no name
+Critical Warning (10846): Verilog HDL Instantiation warning at watch.v(549): instance has no name
+Critical Warning (10846): Verilog HDL Instantiation warning at watch.v(35): instance has no name
+Critical Warning (10846): Verilog HDL Instantiation warning at watch.v(579): instance has no name
+Critical Warning (10846): Verilog HDL Instantiation warning at watch.v(36): instance has no name
+Critical Warning (10846): Verilog HDL Instantiation warning at watch.v(37): instance has no name
+Critical Warning (10846): Verilog HDL Instantiation warning at watch.v(38): instance has no name
+Critical Warning (10846): Verilog HDL Instantiation warning at watch.v(39): instance has no name
+Critical Warning (10846): Verilog HDL Instantiation warning at watch.v(40): instance has no name
+Critical Warning (10846): Verilog HDL Instantiation warning at watch.v(41): instance has no name
+Info: Elaborating entity "watch" for the top level hierarchy
+Info: Elaborating entity "clk" for hierarchy "clk:comb_3"
+Info: Elaborating entity "clockModule" for hierarchy "clockModule:comb_4"
+Info: Elaborating entity "tube" for hierarchy "tube:comb_5"
+Warning (10235): Verilog HDL Always Construct warning at watch.v(458): variable "modelState" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at watch.v(461): variable "value" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at watch.v(462): variable "value" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at watch.v(463): variable "value" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at watch.v(476): variable "value" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at watch.v(477): variable "value" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at watch.v(479): variable "value" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at watch.v(480): variable "value" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at watch.v(482): variable "value" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at watch.v(483): variable "value" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at watch.v(492): variable "sele" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at watch.v(492): variable "modelState" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Info: Elaborating entity "view" for hierarchy "view:comb_6"
+Info: Elaborating entity "Button1Module" for hierarchy "Button1Module:comb_7"
+Info: Elaborating entity "switch" for hierarchy "Button1Module:comb_7|switch:comb_3"
+Info: Elaborating entity "Button2Module" for hierarchy "Button2Module:comb_8"
+Info: Elaborating entity "Button3Module" for hierarchy "Button3Module:comb_9"
+Info: Elaborating entity "beepModule" for hierarchy "beepModule:comb_10"
+Info: Elaborating entity "LEDModule" for hierarchy "LEDModule:comb_11"
+Info: Elaborating entity "AlarmModule" for hierarchy "AlarmModule:comb_12"
+Info: Elaborating entity "StopModule" for hierarchy "StopModule:comb_13"
+Info: Elaborating entity "TLC549" for hierarchy "TLC549:comb_14"
+Warning: 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Warning: Output pins are stuck at VCC or GND
+    Warning (13410): Pin "LED[4]" is stuck at VCC
+    Warning (13410): Pin "LED[5]" is stuck at VCC
+    Warning (13410): Pin "LED[6]" is stuck at VCC
+    Warning (13410): Pin "LED[7]" is stuck at VCC
+Info: Generated suppressed messages file C:/Users/life/Desktop/watch/watch.map.smsg
+Info: Implemented 621 device resources after synthesis - the final resource count might be different
+    Info: Implemented 5 input pins
+    Info: Implemented 27 output pins
+    Info: Implemented 589 logic cells
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 35 warnings
+    Info: Peak virtual memory: 274 megabytes
+    Info: Processing ended: Sat Feb 03 18:07:57 2018
+    Info: Elapsed time: 00:00:07
+    Info: Total CPU time (on all processors): 00:00:07
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in C:/Users/life/Desktop/watch/watch.map.smsg.
+
+

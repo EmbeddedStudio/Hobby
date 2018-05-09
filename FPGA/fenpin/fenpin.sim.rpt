@@ -1,0 +1,289 @@
+Simulator report for fenpin
+Wed Sep 27 19:22:08 2017
+Quartus II 64-Bit Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Full Version
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Simulator Summary
+  3. Simulator Settings
+  4. Simulation Waveforms
+  5. Coverage Summary
+  6. Complete 1/0-Value Coverage
+  7. Missing 1-Value Coverage
+  8. Missing 0-Value Coverage
+  9. Simulator INI Usage
+ 10. Simulator Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2010 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++--------------------------------------------+
+; Simulator Summary                          ;
++-----------------------------+--------------+
+; Type                        ; Value        ;
++-----------------------------+--------------+
+; Simulation Start Time       ; 0 ps         ;
+; Simulation End Time         ; 1.0 us       ;
+; Simulation Netlist Size     ; 73 nodes     ;
+; Simulation Coverage         ;      18.06 % ;
+; Total Number of Transitions ; 401          ;
+; Simulation Breakpoints      ; 0            ;
+; Family                      ; Cyclone II   ;
++-----------------------------+--------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------+
+; Simulator Settings                                                                                                      ;
++--------------------------------------------------------------------------------------------+------------+---------------+
+; Option                                                                                     ; Setting    ; Default Value ;
++--------------------------------------------------------------------------------------------+------------+---------------+
+; Simulation mode                                                                            ; Functional ; Timing        ;
+; Start time                                                                                 ; 0 ns       ; 0 ns          ;
+; Simulation results format                                                                  ; CVWF       ;               ;
+; Add pins automatically to simulation output waveforms                                      ; On         ; On            ;
+; Check outputs                                                                              ; Off        ; Off           ;
+; Report simulation coverage                                                                 ; On         ; On            ;
+; Display complete 1/0 value coverage report                                                 ; On         ; On            ;
+; Display missing 1-value coverage report                                                    ; On         ; On            ;
+; Display missing 0-value coverage report                                                    ; On         ; On            ;
+; Detect setup and hold time violations                                                      ; Off        ; Off           ;
+; Detect glitches                                                                            ; Off        ; Off           ;
+; Disable timing delays in Timing Simulation                                                 ; Off        ; Off           ;
+; Generate Signal Activity File                                                              ; Off        ; Off           ;
+; Generate VCD File for PowerPlay Power Analyzer                                             ; Off        ; Off           ;
+; Group bus channels in simulation results                                                   ; Off        ; Off           ;
+; Preserve fewer signal transitions to reduce memory requirements                            ; On         ; On            ;
+; Trigger vector comparison with the specified mode                                          ; INPUT_EDGE ; INPUT_EDGE    ;
+; Disable setup and hold time violations detection in input registers of bi-directional pins ; Off        ; Off           ;
+; Overwrite Waveform Inputs With Simulation Outputs                                          ; Off        ;               ;
+; Perform Glitch Filtering in Timing Simulation                                              ; Auto       ; Auto          ;
++--------------------------------------------------------------------------------------------+------------+---------------+
+
+
++----------------------+
+; Simulation Waveforms ;
++----------------------+
+Waveform report data cannot be output to ASCII.
+Please use Quartus II 64-Bit to view the waveform report data.
+
+
++--------------------------------------------------------------------+
+; Coverage Summary                                                   ;
++-----------------------------------------------------+--------------+
+; Type                                                ; Value        ;
++-----------------------------------------------------+--------------+
+; Total coverage as a percentage                      ;      18.06 % ;
+; Total nodes checked                                 ; 73           ;
+; Total output ports checked                          ; 72           ;
+; Total output ports with complete 1/0-value coverage ; 13           ;
+; Total output ports with no 1/0-value coverage       ; 57           ;
+; Total output ports with no 1-value coverage         ; 57           ;
+; Total output ports with no 0-value coverage         ; 59           ;
++-----------------------------------------------------+--------------+
+
+
+The following table displays output ports that toggle between 1 and 0 during simulation.
++-------------------------------------------------------+
+; Complete 1/0-Value Coverage                           ;
++-----------------+------------------+------------------+
+; Node Name       ; Output Port Name ; Output Port Type ;
++-----------------+------------------+------------------+
+; |fenpin|qout[1] ; |fenpin|qout[1]  ; regout           ;
+; |fenpin|qout[2] ; |fenpin|qout[2]  ; regout           ;
+; |fenpin|qout[3] ; |fenpin|qout[3]  ; regout           ;
+; |fenpin|qout[4] ; |fenpin|qout[4]  ; regout           ;
+; |fenpin|clkin   ; |fenpin|clkin    ; out              ;
+; |fenpin|Add0~0  ; |fenpin|Add0~0   ; out0             ;
+; |fenpin|Add0~1  ; |fenpin|Add0~1   ; out0             ;
+; |fenpin|Add0~2  ; |fenpin|Add0~2   ; out0             ;
+; |fenpin|Add0~3  ; |fenpin|Add0~3   ; out0             ;
+; |fenpin|Add0~4  ; |fenpin|Add0~4   ; out0             ;
+; |fenpin|Add0~5  ; |fenpin|Add0~5   ; out0             ;
+; |fenpin|Add0~6  ; |fenpin|Add0~6   ; out0             ;
+; |fenpin|Add0~7  ; |fenpin|Add0~7   ; out0             ;
++-----------------+------------------+------------------+
+
+
+The following table displays output ports that do not toggle to 1 during simulation.
++--------------------------------------------------------+
+; Missing 1-Value Coverage                               ;
++------------------+------------------+------------------+
+; Node Name        ; Output Port Name ; Output Port Type ;
++------------------+------------------+------------------+
+; |fenpin|qout[6]  ; |fenpin|qout[6]  ; regout           ;
+; |fenpin|qout[7]  ; |fenpin|qout[7]  ; regout           ;
+; |fenpin|qout[8]  ; |fenpin|qout[8]  ; regout           ;
+; |fenpin|qout[9]  ; |fenpin|qout[9]  ; regout           ;
+; |fenpin|qout[10] ; |fenpin|qout[10] ; regout           ;
+; |fenpin|qout[11] ; |fenpin|qout[11] ; regout           ;
+; |fenpin|qout[12] ; |fenpin|qout[12] ; regout           ;
+; |fenpin|qout[13] ; |fenpin|qout[13] ; regout           ;
+; |fenpin|qout[14] ; |fenpin|qout[14] ; regout           ;
+; |fenpin|qout[15] ; |fenpin|qout[15] ; regout           ;
+; |fenpin|qout[16] ; |fenpin|qout[16] ; regout           ;
+; |fenpin|qout[17] ; |fenpin|qout[17] ; regout           ;
+; |fenpin|qout[18] ; |fenpin|qout[18] ; regout           ;
+; |fenpin|qout[19] ; |fenpin|qout[19] ; regout           ;
+; |fenpin|qout[20] ; |fenpin|qout[20] ; regout           ;
+; |fenpin|qout[21] ; |fenpin|qout[21] ; regout           ;
+; |fenpin|qout[22] ; |fenpin|qout[22] ; regout           ;
+; |fenpin|qout[23] ; |fenpin|qout[23] ; regout           ;
+; |fenpin|clk6hz   ; |fenpin|clk6hz   ; pin_out          ;
+; |fenpin|clk190hz ; |fenpin|clk190hz ; pin_out          ;
+; |fenpin|clk760hz ; |fenpin|clk760hz ; pin_out          ;
+; |fenpin|Add0~9   ; |fenpin|Add0~9   ; out0             ;
+; |fenpin|Add0~10  ; |fenpin|Add0~10  ; out0             ;
+; |fenpin|Add0~11  ; |fenpin|Add0~11  ; out0             ;
+; |fenpin|Add0~12  ; |fenpin|Add0~12  ; out0             ;
+; |fenpin|Add0~13  ; |fenpin|Add0~13  ; out0             ;
+; |fenpin|Add0~14  ; |fenpin|Add0~14  ; out0             ;
+; |fenpin|Add0~15  ; |fenpin|Add0~15  ; out0             ;
+; |fenpin|Add0~16  ; |fenpin|Add0~16  ; out0             ;
+; |fenpin|Add0~17  ; |fenpin|Add0~17  ; out0             ;
+; |fenpin|Add0~18  ; |fenpin|Add0~18  ; out0             ;
+; |fenpin|Add0~19  ; |fenpin|Add0~19  ; out0             ;
+; |fenpin|Add0~20  ; |fenpin|Add0~20  ; out0             ;
+; |fenpin|Add0~21  ; |fenpin|Add0~21  ; out0             ;
+; |fenpin|Add0~22  ; |fenpin|Add0~22  ; out0             ;
+; |fenpin|Add0~23  ; |fenpin|Add0~23  ; out0             ;
+; |fenpin|Add0~24  ; |fenpin|Add0~24  ; out0             ;
+; |fenpin|Add0~25  ; |fenpin|Add0~25  ; out0             ;
+; |fenpin|Add0~26  ; |fenpin|Add0~26  ; out0             ;
+; |fenpin|Add0~27  ; |fenpin|Add0~27  ; out0             ;
+; |fenpin|Add0~28  ; |fenpin|Add0~28  ; out0             ;
+; |fenpin|Add0~29  ; |fenpin|Add0~29  ; out0             ;
+; |fenpin|Add0~30  ; |fenpin|Add0~30  ; out0             ;
+; |fenpin|Add0~31  ; |fenpin|Add0~31  ; out0             ;
+; |fenpin|Add0~32  ; |fenpin|Add0~32  ; out0             ;
+; |fenpin|Add0~33  ; |fenpin|Add0~33  ; out0             ;
+; |fenpin|Add0~34  ; |fenpin|Add0~34  ; out0             ;
+; |fenpin|Add0~35  ; |fenpin|Add0~35  ; out0             ;
+; |fenpin|Add0~36  ; |fenpin|Add0~36  ; out0             ;
+; |fenpin|Add0~37  ; |fenpin|Add0~37  ; out0             ;
+; |fenpin|Add0~38  ; |fenpin|Add0~38  ; out0             ;
+; |fenpin|Add0~39  ; |fenpin|Add0~39  ; out0             ;
+; |fenpin|Add0~40  ; |fenpin|Add0~40  ; out0             ;
+; |fenpin|Add0~41  ; |fenpin|Add0~41  ; out0             ;
+; |fenpin|Add0~42  ; |fenpin|Add0~42  ; out0             ;
+; |fenpin|Add0~43  ; |fenpin|Add0~43  ; out0             ;
+; |fenpin|Add0~44  ; |fenpin|Add0~44  ; out0             ;
++------------------+------------------+------------------+
+
+
+The following table displays output ports that do not toggle to 0 during simulation.
++--------------------------------------------------------+
+; Missing 0-Value Coverage                               ;
++------------------+------------------+------------------+
+; Node Name        ; Output Port Name ; Output Port Type ;
++------------------+------------------+------------------+
+; |fenpin|qout[5]  ; |fenpin|qout[5]  ; regout           ;
+; |fenpin|qout[6]  ; |fenpin|qout[6]  ; regout           ;
+; |fenpin|qout[7]  ; |fenpin|qout[7]  ; regout           ;
+; |fenpin|qout[8]  ; |fenpin|qout[8]  ; regout           ;
+; |fenpin|qout[9]  ; |fenpin|qout[9]  ; regout           ;
+; |fenpin|qout[10] ; |fenpin|qout[10] ; regout           ;
+; |fenpin|qout[11] ; |fenpin|qout[11] ; regout           ;
+; |fenpin|qout[12] ; |fenpin|qout[12] ; regout           ;
+; |fenpin|qout[13] ; |fenpin|qout[13] ; regout           ;
+; |fenpin|qout[14] ; |fenpin|qout[14] ; regout           ;
+; |fenpin|qout[15] ; |fenpin|qout[15] ; regout           ;
+; |fenpin|qout[16] ; |fenpin|qout[16] ; regout           ;
+; |fenpin|qout[17] ; |fenpin|qout[17] ; regout           ;
+; |fenpin|qout[18] ; |fenpin|qout[18] ; regout           ;
+; |fenpin|qout[19] ; |fenpin|qout[19] ; regout           ;
+; |fenpin|qout[20] ; |fenpin|qout[20] ; regout           ;
+; |fenpin|qout[21] ; |fenpin|qout[21] ; regout           ;
+; |fenpin|qout[22] ; |fenpin|qout[22] ; regout           ;
+; |fenpin|qout[23] ; |fenpin|qout[23] ; regout           ;
+; |fenpin|clk6hz   ; |fenpin|clk6hz   ; pin_out          ;
+; |fenpin|clk190hz ; |fenpin|clk190hz ; pin_out          ;
+; |fenpin|clk760hz ; |fenpin|clk760hz ; pin_out          ;
+; |fenpin|Add0~8   ; |fenpin|Add0~8   ; out0             ;
+; |fenpin|Add0~9   ; |fenpin|Add0~9   ; out0             ;
+; |fenpin|Add0~10  ; |fenpin|Add0~10  ; out0             ;
+; |fenpin|Add0~11  ; |fenpin|Add0~11  ; out0             ;
+; |fenpin|Add0~12  ; |fenpin|Add0~12  ; out0             ;
+; |fenpin|Add0~13  ; |fenpin|Add0~13  ; out0             ;
+; |fenpin|Add0~14  ; |fenpin|Add0~14  ; out0             ;
+; |fenpin|Add0~15  ; |fenpin|Add0~15  ; out0             ;
+; |fenpin|Add0~16  ; |fenpin|Add0~16  ; out0             ;
+; |fenpin|Add0~17  ; |fenpin|Add0~17  ; out0             ;
+; |fenpin|Add0~18  ; |fenpin|Add0~18  ; out0             ;
+; |fenpin|Add0~19  ; |fenpin|Add0~19  ; out0             ;
+; |fenpin|Add0~20  ; |fenpin|Add0~20  ; out0             ;
+; |fenpin|Add0~21  ; |fenpin|Add0~21  ; out0             ;
+; |fenpin|Add0~22  ; |fenpin|Add0~22  ; out0             ;
+; |fenpin|Add0~23  ; |fenpin|Add0~23  ; out0             ;
+; |fenpin|Add0~24  ; |fenpin|Add0~24  ; out0             ;
+; |fenpin|Add0~25  ; |fenpin|Add0~25  ; out0             ;
+; |fenpin|Add0~26  ; |fenpin|Add0~26  ; out0             ;
+; |fenpin|Add0~27  ; |fenpin|Add0~27  ; out0             ;
+; |fenpin|Add0~28  ; |fenpin|Add0~28  ; out0             ;
+; |fenpin|Add0~29  ; |fenpin|Add0~29  ; out0             ;
+; |fenpin|Add0~30  ; |fenpin|Add0~30  ; out0             ;
+; |fenpin|Add0~31  ; |fenpin|Add0~31  ; out0             ;
+; |fenpin|Add0~32  ; |fenpin|Add0~32  ; out0             ;
+; |fenpin|Add0~33  ; |fenpin|Add0~33  ; out0             ;
+; |fenpin|Add0~34  ; |fenpin|Add0~34  ; out0             ;
+; |fenpin|Add0~35  ; |fenpin|Add0~35  ; out0             ;
+; |fenpin|Add0~36  ; |fenpin|Add0~36  ; out0             ;
+; |fenpin|Add0~37  ; |fenpin|Add0~37  ; out0             ;
+; |fenpin|Add0~38  ; |fenpin|Add0~38  ; out0             ;
+; |fenpin|Add0~39  ; |fenpin|Add0~39  ; out0             ;
+; |fenpin|Add0~40  ; |fenpin|Add0~40  ; out0             ;
+; |fenpin|Add0~41  ; |fenpin|Add0~41  ; out0             ;
+; |fenpin|Add0~42  ; |fenpin|Add0~42  ; out0             ;
+; |fenpin|Add0~43  ; |fenpin|Add0~43  ; out0             ;
+; |fenpin|Add0~44  ; |fenpin|Add0~44  ; out0             ;
++------------------+------------------+------------------+
+
+
++---------------------+
+; Simulator INI Usage ;
++--------+------------+
+; Option ; Usage      ;
++--------+------------+
+
+
++--------------------+
+; Simulator Messages ;
++--------------------+
+Info: *******************************************************************
+Info: Running Quartus II 64-Bit Simulator
+    Info: Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Full Version
+    Info: Processing started: Wed Sep 27 19:22:07 2017
+Info: Command: quartus_sim --read_settings_files=on --write_settings_files=off fenpin -c fenpin
+Info: Using vector source file "G:/Workspace/github/FPGA/fenpin/fenpin.vwf"
+Info: Option to preserve fewer signal transitions to reduce memory requirements is enabled
+    Info: Simulation has been partitioned into sub-simulations according to the maximum transition count determined by the engine. Transitions from memory will be flushed out to disk at the end of each sub-simulation to reduce memory requirements.
+Info: Simulation partitioned into 1 sub-simulations
+Info: Simulation coverage is      18.06 %
+Info: Number of transitions in simulation is 401
+Info: Quartus II 64-Bit Simulator was successful. 0 errors, 0 warnings
+    Info: Peak virtual memory: 178 megabytes
+    Info: Processing ended: Wed Sep 27 19:22:08 2017
+    Info: Elapsed time: 00:00:01
+    Info: Total CPU time (on all processors): 00:00:00
+
+

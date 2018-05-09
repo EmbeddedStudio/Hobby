@@ -1,0 +1,17 @@
+module CNT27B (clk,rst,ena,out);
+	input clk,rst,ena;
+	output [3:0] out;
+	reg [3:0] out;
+	reg q[26:0];
+	always @(posedge clk or negedge rst)
+	begin
+		if(!rst)
+		q=0;
+		else if (!ena)
+		q=q;
+		else
+		q=q+1;
+		out=q[26:23];
+		
+	end	
+endmodule 	

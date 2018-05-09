@@ -1,0 +1,4 @@
+Warning (10268): Verilog HDL information at watch.v(306): always construct contains both blocking and non-blocking assignments
+Warning (10268): Verilog HDL information at watch.v(385): always construct contains both blocking and non-blocking assignments
+Warning (10268): Verilog HDL information at watch.v(687): always construct contains both blocking and non-blocking assignments
+Warning (10268): Verilog HDL information at watch.v(706): always construct contains both blocking and non-blocking assignments
