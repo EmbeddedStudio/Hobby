@@ -18,6 +18,10 @@ void print_usage(char *file)
     printf("%s /dev/leds off\n", file);
     printf("%s /dev/led1 on\n", file);
     printf("%s /dev/led1 off\n", file);
+    printf("%s /dev/led2 on\n", file);
+    printf("%s /dev/led2 off\n", file);
+    printf("%s /dev/led3 on\n", file);
+    printf("%s /dev/led3 off\n", file);
 }
 
 int main(int argc, char **argv)

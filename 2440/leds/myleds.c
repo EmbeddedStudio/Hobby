@@ -285,8 +285,8 @@ static int __init s3c24xx_leds_init(void)
 	if (IS_ERR(leds_class))
 		return PTR_ERR(leds_class);
     
-
-
+	
+	
 	leds_class_devs[0] = class_device_create(leds_class, NULL, MKDEV(LED_MAJOR, 0), NULL, "leds");
 	
 	for (minor = 1; minor < 4; minor++)
