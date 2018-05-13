@@ -26,7 +26,7 @@ static DECLARE_MUTEX(leds_lock); // ∂®“Â∏≥÷µ
 
 //static int minor;
 static unsigned long gpio_va;
-
+ 
 #define GPIO_OFT(x) ((x) - 0x56000000)
 #define GPFCON  (*(volatile unsigned long *)(gpio_va + GPIO_OFT(0x56000050)))
 #define GPFDAT  (*(volatile unsigned long *)(gpio_va + GPIO_OFT(0x56000054)))
