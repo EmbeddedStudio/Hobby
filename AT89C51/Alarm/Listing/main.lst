@@ -1,4 +1,4 @@
-C51 COMPILER V9.56.0.0   MAIN                                                              09/21/2017 19:48:40 PAGE 1   
+C51 COMPILER V9.56.0.0   MAIN                                                              05/14/2018 08:32:08 PAGE 1   
 
 
 C51 COMPILER V9.56.0.0, COMPILATION OF MODULE MAIN
@@ -62,7 +62,7 @@ line level    source
   48   4                                      {
   49   5                                              Digital = DigCode[i];
   50   5                                              
-C51 COMPILER V9.56.0.0   MAIN                                                              09/21/2017 19:48:40 PAGE 2   
+C51 COMPILER V9.56.0.0   MAIN                                                              05/14/2018 08:32:08 PAGE 2   
 
   51   5                                              /* 这是是在第一位和第三位的位置上添加小数点 */
   52   5                                              if(i == 1 || i == 3)
@@ -126,7 +126,7 @@ line level    source
  108   5                                              if(i == 1)
  109   5                                              {
  110   6                                                      /* 通过按位与操作，在不改变低7位的前提下
-C51 COMPILER V9.56.0.0   MAIN                                                              09/21/2017 19:48:40 PAGE 3   
+C51 COMPILER V9.56.0.0   MAIN                                                              05/14/2018 08:32:08 PAGE 3   
 
              -，将位7置为高电平 */
  111   6                                                      Segment = SegCode[alarm[i]] | 0x80;
@@ -190,7 +190,7 @@ line level    source
  168   1              TL0 = 0xdc;
  169   1              
  170   1              InterruptCount++;
-C51 COMPILER V9.56.0.0   MAIN                                                              09/21/2017 19:48:40 PAGE 4   
+C51 COMPILER V9.56.0.0   MAIN                                                              05/14/2018 08:32:08 PAGE 4   
 
  171   1              
  172   1              if(InterruptCount >= 16)
@@ -254,7 +254,7 @@ line level    source
  227   6                                                      {
  228   7                                                              value[0]++;
  229   7                                                      }
-C51 COMPILER V9.56.0.0   MAIN                                                              09/21/2017 19:48:40 PAGE 5   
+C51 COMPILER V9.56.0.0   MAIN                                                              05/14/2018 08:32:08 PAGE 5   
 
  230   6                                                      else
  231   6                                                      {

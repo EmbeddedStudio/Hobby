@@ -1,4 +1,4 @@
-C51 COMPILER V9.56.0.0   BSP_KEY                                                           09/21/2017 19:48:40 PAGE 1   
+C51 COMPILER V9.56.0.0   BSP_KEY                                                           05/14/2018 08:32:08 PAGE 1   
 
 
 C51 COMPILER V9.56.0.0, COMPILATION OF MODULE BSP_KEY
@@ -62,7 +62,7 @@ line level    source
   51   1      }
   52          
   53          /* 这里需要使用extern声明其他c文件定义的变量 */
-C51 COMPILER V9.56.0.0   BSP_KEY                                                           09/21/2017 19:48:40 PAGE 2   
+C51 COMPILER V9.56.0.0   BSP_KEY                                                           05/14/2018 08:32:08 PAGE 2   
 
   54          extern u8 value[6];
   55          extern u8 location;
@@ -126,7 +126,7 @@ line level    source
  113   4                                              case (4):
  114   4                                                      if(value[location] < 5)
  115   4                                                      {
-C51 COMPILER V9.56.0.0   BSP_KEY                                                           09/21/2017 19:48:40 PAGE 3   
+C51 COMPILER V9.56.0.0   BSP_KEY                                                           05/14/2018 08:32:08 PAGE 3   
 
  116   5                                                              value[location] += 1;
  117   5                                                      }
@@ -190,7 +190,7 @@ line level    source
  175   4                                              location = 0;
  176   4                                      }
  177   3                              }
-C51 COMPILER V9.56.0.0   BSP_KEY                                                           09/21/2017 19:48:40 PAGE 4   
+C51 COMPILER V9.56.0.0   BSP_KEY                                                           05/14/2018 08:32:08 PAGE 4   
 
  178   2                              else if(state == STATE_ALARM)
  179   2                              {

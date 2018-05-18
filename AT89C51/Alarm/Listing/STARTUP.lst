@@ -1,4 +1,4 @@
-A51 MACRO ASSEMBLER  STARTUP                                                              09/21/2017 19:48:39 PAGE     1
+A51 MACRO ASSEMBLER  STARTUP                                                              05/14/2018 08:32:08 PAGE     1
 
 
 MACRO ASSEMBLER A51 V8.2.5.0
@@ -122,7 +122,7 @@ LOC  OBJ            LINE     SOURCE
 
                                              INC     DPTR
 
-A51 MACRO ASSEMBLER  STARTUP                                                              09/21/2017 19:48:39 PAGE     2
+A51 MACRO ASSEMBLER  STARTUP                                                              05/14/2018 08:32:08 PAGE     2
 
                                              DJNZ    R7,XDATALOOP
 
@@ -214,7 +214,7 @@ LOC  OBJ            LINE     SOURCE
 
                      102                     END
 
-A51 MACRO ASSEMBLER  STARTUP                                                              09/21/2017 19:48:39 PAGE     3
+A51 MACRO ASSEMBLER  STARTUP                                                              05/14/2018 08:32:08 PAGE     3
 
 SYMBOL TABLE LISTING
 ------ ----- -------

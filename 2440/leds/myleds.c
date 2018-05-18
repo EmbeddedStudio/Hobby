@@ -165,9 +165,9 @@ static ssize_t s3c24xx_leds_write(struct file *file, const char __user *buf, siz
     //int minor = MINOR(inode->i_rdev); //MINOR(inode->i_cdev);
 	int minor = MINOR(file->f_dentry->d_inode->i_rdev);
     char val;
-
+	
     copy_from_user(&val, buf, 1);
-
+	
     switch (minor)
     {
         case 0: /* /dev/leds */

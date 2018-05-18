@@ -1,10 +1,17 @@
 开发板挂载网络根文件系统（网络挂载根文件系统前要确保Ubuntu能ping通开发板）
 mount -t nfs -o nolock,vers=2 192.168.100.7:/work/nfs_root/ /mnt
+mount -t nfs -o nolock,vers=2 192.168.100.7:/work/nfs_root/mydev/ /mnt
 
 查看已经安装的设备驱动
 cat /proc/devices
 
+查看已经安装的中断
+cat /proc/interrupts
 
+开启中断
+exec 5</dev/eint
+关闭中断
+exec 5<&-
 
 
 
