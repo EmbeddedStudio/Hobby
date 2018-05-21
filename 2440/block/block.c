@@ -55,7 +55,7 @@ static irqreturn_t button_irq(int irq,void *dev_id)
 	unsigned int pinval;
 	
 	pinval=s3c2410_gpio_getpin(pindesc->pin);
-
+	
 	if(pinval)
 	{
 		/*松开*/
@@ -97,8 +97,6 @@ static int block_open(struct inode *inode, struct file *file)
 		down(&button_lock);
 
 	}
-	
-
 		/* 配置为中断引脚         */    
 	request_irq(IRQ_EINT0,button_irq,IRQT_FALLING,"S1",&pins_desc[0]);
 	request_irq(IRQ_EINT2,button_irq,IRQT_FALLING,"S2",&pins_desc[1]);
@@ -167,7 +165,6 @@ static struct file_operations block_fops = {
  	 .release =   block_close,
  	 .poll    =   block_poll,
 	 .fasync  =   block_fasync,
-	 
 };
 
 

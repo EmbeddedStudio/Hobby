@@ -42,7 +42,7 @@ int main(int argc, char **argv)
         printf("error, can't open %s\n", filename);
         return 0;
     }
-
+	
     if (!strcmp("on", argv[2]))
     {
         // ¡¡µ∆
@@ -64,4 +64,9 @@ int main(int argc, char **argv)
     
     return 0;
 }
+
+
+
+
+
 
