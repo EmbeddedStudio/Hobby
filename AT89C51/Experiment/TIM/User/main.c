@@ -121,7 +121,7 @@ void INT1_IRQHander(void) interrupt 2
                 }
         }
 }
-void TIM1_Handler() interrupt 3
+void TIM1_IRQHander(void) interrupt 3
 {
         TR1=0;
         #if XTAL_12M

@@ -1,0 +1,126 @@
+C51 COMPILER V9.56.0.0   MAIN                                                              05/30/2018 17:43:08 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN ..\Output\main.obj
+COMPILER INVOKED BY: D:\Program Files\AT89C51\C51\BIN\C51.EXE ..\User\main.c OPTIMIZE(8,SPEED) BROWSE INCDIR(..\User) DE
+                    -BUG OBJECTEXTEND PRINT(..\Listing\main.lst) TABS(8) OBJECT(..\Output\main.obj)
+
+line level    source
+
+   1          #include <reg52.h>
+   2          #define XTAL_110592M  1
+   3          
+   4          #define u8  unsigned char
+   5          #define u16 unsigned short
+   6          #define u32 unsigned long
+   7          
+   8          u8 SegCode[10] = {0x3F, 0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07, 0x7F, 0x6F};  // 段选低电平有效
+   9          
+  10          u8 Num1[4]={8,3,2,3};//改成自己的学号
+  11          u8 Num2[5]={'3','2','7','7','\n'};//改成自己的学号
+  12          
+  13          u8 receiveData;  //接收缓存
+  14          u8 time =0;  //中断计数
+  15          
+  16          /* 函数的声明*/
+  17          void delay( u16 t);
+  18          
+  19          void main()
+  20          {
+  21   1              u8 i=0;
+  22   1              TMOD=0x21; //确定定时器方式
+  23   1              PCON = 0x00;  //波特率不加倍为9600
+  24   1              SCON = 0x50;  //工作在方式1
+  25   1              
+  26   1              #if XTAL_110592M
+  27   1                      TH1=0xFD;       //赋初值
+  28   1                      TL1=0xFD; 
+  29   1                      TH0=0xA6;
+  30   1                      TL0=0x00;
+  31   1              #else
+                              TH1=0xFA;       //赋初值
+                              TL1=0xFA;
+                              TH0=0x4C;       //赋初值
+                              TL0=0x00;
+                      #endif
+  37   1              TI =0;
+  38   1              RI =0;
+  39   1              TR1=1;
+  40   1              TR0=1;
+  41   1              IE = 0x9A;
+  42   1              while(1)
+  43   1              {
+  44   2                      if(receiveData=='1')
+  45   2                      {
+  46   3                              for(i=0;i<4;i++)
+  47   3                              {
+  48   4                                      P1&=0xf8; //1111 1000
+  49   4                                      P1|=i;   //xxxx x001
+  50   4                                      P2=SegCode[Num1[i]];
+  51   4                                      delay(1);
+  52   4                                      P2=0x00;//消隐
+  53   4                              }
+  54   3                      }
+C51 COMPILER V9.56.0.0   MAIN                                                              05/30/2018 17:43:08 PAGE 2   
+
+  55   2                      else
+  56   2                      {
+  57   3                              P2=0x00; 
+  58   3                      }
+  59   2              }
+  60   1      }
+  61          
+  62          void delay( u16 t)
+  63          {
+  64   1              u16 i,j;
+  65   1              for(i=0;i<t;i++)
+  66   1                      for(j=0;j<1000;j++);
+  67   1      }
+  68          void TIM0_IRQHander(void) interrupt 1
+  69          {
+  70   1              u8 i=0;
+  71   1              TR0=0;
+  72   1              #if XTAL_110592M
+  73   1                      TH0=0xA6;       //赋初值
+  74   1      //                TL0=0x00;  
+  75   1              #else     
+                              TH0=0x4C;       //赋初值
+              //                TL0=0x00;
+                      #endif
+  79   1              TR0=1;
+  80   1              time++;
+  81   1              if (time>=40)
+  82   1              {
+  83   2                      time=0;
+  84   2                      for(i=0;i<5;i++)
+  85   2                      {
+  86   3                              SBUF=Num2[i];
+  87   3                              while(!TI);                 // 等待发送完成
+  88   3                              TI=0;                   // 清除发送标志
+  89   3                      }
+  90   2              }
+  91   1      }
+  92          void Usart() interrupt 4  //串口收发中断
+  93          {
+  94   1                  /*          接收中断        */
+  95   1                  TI=0;
+  96   1                  RI=0;           //置0，便于下一次的接收
+  97   1                  receiveData = SBUF;//将接收到的数据保存在 receiveData 中
+  98   1      }
+  99          
+ 100          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    183    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     21       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

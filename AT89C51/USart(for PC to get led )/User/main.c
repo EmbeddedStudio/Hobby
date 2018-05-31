@@ -12,7 +12,6 @@ int main()
             {
                         P1 = receiveData;//将receiveData的值赋给P1；
             }
-
 }
 
 void Usart() interrupt 4  //串口收发中断
