@@ -16,7 +16,7 @@ void my_signal_fun(int signum)
 {
 	unsigned char key_val;
 	read (fd,&key_val,1);
-	printf("key_val:0x%2x\n",key_val);
+	printf("key_val:0x%x\n",key_val);
 }
 
 
@@ -24,10 +24,10 @@ void my_signal_fun(int signum)
 
 int main(int argc, char **argv)
 {
-   int Oflags;
+    int Oflags;
     signal(SIGIO,my_signal_fun);
 	
-    fd = open("/dev/signal", O_RDONLY);//eint
+    fd = open("/dev/time", O_RDONLY);//eint
     if (fd < 0)
     {
         printf("error, can't open \n");
@@ -43,7 +43,7 @@ int main(int argc, char **argv)
 										 
 	while(1)
 	{
-		sleep( 1000 );
+		sleep(1000 );
  	}
    
     return 0;
