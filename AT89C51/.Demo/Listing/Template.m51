@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22                                                        05/14/2018  08:29:34  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22                                                        07/19/2018  17:01:33  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
@@ -13,6 +13,7 @@ INPUT MODULES INCLUDED:
   ..\Output\STARTUP.obj (?C_STARTUP)
   ..\Output\main.obj (MAIN)
   ..\Output\bsp_delay.obj (BSP_DELAY)
+  D:\PROGRAM FILES\AT89C51\C51\LIB\C51S.LIB (?C?ULCMP)
 
 
 LINK MAP OF MODULE:  ..\Output\Template (?C_STARTUP)
@@ -23,25 +24,32 @@ LINK MAP OF MODULE:  ..\Output\Template (?C_STARTUP)
 
             * * * * * * *   D A T A   M E M O R Y   * * * * * * *
             REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
-            IDATA   0008H     0001H     UNIT         ?STACK
+            DATA    0008H     0005H     UNIT         _DATA_GROUP_
+            IDATA   000DH     0001H     UNIT         ?STACK
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
                     0003H     07FDH                  *** GAP ***
-            CODE    0800H     0017H     UNIT         ?PR?_DELAY?BSP_DELAY
-            CODE    0817H     000CH     UNIT         ?C_C51STARTUP
-            CODE    0823H     0002H     UNIT         ?PR?MAIN?MAIN
+            CODE    0800H     0045H     UNIT         ?PR?_DELAY?BSP_DELAY
+            CODE    0845H     0011H     UNIT         ?C?LIB_CODE
+            CODE    0856H     000CH     UNIT         ?C_C51STARTUP
+            CODE    0862H     0007H     UNIT         ?PR?MAIN?MAIN
 
 
 
 OVERLAY MAP OF MODULE:   ..\Output\Template (?C_STARTUP)
 
 
-SEGMENT
-  +--> CALLED SEGMENT
----------------------
-?C_C51STARTUP
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
   +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN                  -----    -----
+  +--> ?PR?_DELAY?BSP_DELAY
+
+?PR?_DELAY?BSP_DELAY           0008H    0005H
 
 
 
@@ -51,20 +59,20 @@ SYMBOL TABLE OF MODULE:  ..\Output\Template (?C_STARTUP)
   ----------------------------------
 
   -------         MODULE        ?C_STARTUP
-  C:0817H         SEGMENT       ?C_C51STARTUP
-  I:0008H         SEGMENT       ?STACK
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/19/2018  17:01:33  PAGE 2
+
+
+  C:0856H         SEGMENT       ?C_C51STARTUP
+  I:000DH         SEGMENT       ?STACK
   C:0000H         PUBLIC        ?C_STARTUP
   D:00E0H         SYMBOL        ACC
   D:00F0H         SYMBOL        B
   D:0083H         SYMBOL        DPH
   D:0082H         SYMBOL        DPL
   N:0000H         SYMBOL        IBPSTACK
-BL51 BANKED LINKER/LOCATER V6.22                                                      05/14/2018  08:29:34  PAGE 2
-
-
   N:0100H         SYMBOL        IBPSTACKTOP
   N:0080H         SYMBOL        IDATALEN
-  C:081AH         SYMBOL        IDATALOOP
+  C:0859H         SYMBOL        IDATALOOP
   N:0000H         SYMBOL        PBPSTACK
   N:0100H         SYMBOL        PBPSTACKTOP
   N:0000H         SYMBOL        PDATALEN
@@ -73,18 +81,18 @@ SYMBOL TABLE OF MODULE:  ..\Output\Template (?C_STARTUP)
   N:0000H         SYMBOL        PPAGEENABLE
   D:00A0H         SYMBOL        PPAGE_SFR
   D:0081H         SYMBOL        SP
-  C:0817H         SYMBOL        STARTUP1
+  C:0856H         SYMBOL        STARTUP1
   N:0000H         SYMBOL        XBPSTACK
   N:0000H         SYMBOL        XBPSTACKTOP
   N:0000H         SYMBOL        XDATALEN
   N:0000H         SYMBOL        XDATASTART
   C:0000H         LINE#         126
-  C:0817H         LINE#         133
-  C:0819H         LINE#         134
-  C:081AH         LINE#         135
-  C:081BH         LINE#         136
-  C:081DH         LINE#         185
-  C:0820H         LINE#         196
+  C:0856H         LINE#         133
+  C:0858H         LINE#         134
+  C:0859H         LINE#         135
+  C:085AH         LINE#         136
+  C:085CH         LINE#         185
+  C:085FH         LINE#         196
   -------         ENDMOD        ?C_STARTUP
 
   -------         MODULE        MAIN
@@ -93,47 +101,57 @@ SYMBOL TABLE OF MODULE:  ..\Output\Template (?C_STARTUP)
   D:00B0H         PUBLIC        P3
   D:00A8H         PUBLIC        IE
   D:00B8H         PUBLIC        IP
-  C:0823H         PUBLIC        main
+  C:0862H         PUBLIC        main
   D:0098H         PUBLIC        SCON
   D:0088H         PUBLIC        TCON
   D:00C8H         PUBLIC        T2CON
   D:00D0H         PUBLIC        PSW
   -------         PROC          MAIN
-  C:0823H         LINE#         3
-  C:0823H         LINE#         4
-  C:0823H         LINE#         6
-  C:0823H         LINE#         7
-  C:0823H         LINE#         9
+  C:0862H         LINE#         4
+  C:0862H         LINE#         5
+  C:0862H         LINE#         7
+  C:0862H         LINE#         8
+  C:0862H         LINE#         9
+  C:0867H         LINE#         10
   -------         ENDPROC       MAIN
   -------         ENDMOD        MAIN
 
   -------         MODULE        BSP_DELAY
   C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/19/2018  17:01:33  PAGE 3
+
+
+  D:00B0H         PUBLIC        P3
+  D:00A8H         PUBLIC        IE
   C:0800H         PUBLIC        _delay
+  D:00B8H         PUBLIC        IP
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  D:00C8H         PUBLIC        T2CON
+  D:00D0H         PUBLIC        PSW
   -------         PROC          _DELAY
-  D:0007H         SYMBOL        ms
+  D:0008H         SYMBOL        ms
   -------         DO            
-  D:0004H         SYMBOL        temp
+  D:0009H         SYMBOL        temp
   -------         ENDDO         
   C:0800H         LINE#         3
-  C:0800H         LINE#         4
-  C:0800H         LINE#         7
-  C:0806H         LINE#         8
-BL51 BANKED LINKER/LOCATER V6.22                                                      05/14/2018  08:29:34  PAGE 3
-
-
-  C:0806H         LINE#         9
-  C:0813H         LINE#         10
-  C:0816H         LINE#         11
+  C:0802H         LINE#         4
+  C:0802H         LINE#         7
+  C:0809H         LINE#         8
+  C:0809H         LINE#         9
+  C:0840H         LINE#         10
+  C:0844H         LINE#         11
   -------         ENDPROC       _DELAY
   -------         ENDMOD        BSP_DELAY
 
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_DELAY?BSP_DELAY
+  -------         MODULE        ?C?ULCMP
+  C:0845H         PUBLIC        ?C?ULCMP
+  -------         ENDMOD        ?C?ULCMP
 
 ******************************************************************************
-* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0028H BYTE ( 1%) *
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 005BH BYTE ( 4%) *
 ******************************************************************************
 
-Program Size: data=9.0 xdata=0 code=40
-LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)
+Program Size: data=14.0 xdata=0 code=108
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

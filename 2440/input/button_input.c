@@ -104,7 +104,7 @@ static int buttons_init()
 	buttons_timer.function=buttons_timer_function;
 	add_timer(&buttons_timer);
 	
-	for (i=0;i<4;i++)
+	for (i=0;i<3;i++)
 	{
 		request_irq(pins_desc[i].irq, buttons_irq, IRQT_BOTHEDGE, pins_desc[i].name ,&pins_desc[i]);
 	}
@@ -120,7 +120,7 @@ static int buttons_init()
 static int buttons_exit()
 {
 	int i ;
-	for(i=0;i<4;i++)
+	for(i=0;i<3;i++)
 	{
 		free_irq(pins_desc[i].irq,&pins_desc[i]);
 	}
