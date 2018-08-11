@@ -1,16 +1,6 @@
 #书写USB驱动程序
 
-		USB驱动程序框架
-		APP：USB 设备驱动程序
-kernel------------------------
-		USB总线驱动程序
----------------------------------
-		  主机控制器
-	UHCI OHCI EHCI 
-		  
-		  
-		  
-		  
+
 1、make menuconfig 去掉原来的USB驱动
 ->Device Drivers
 	->HID Device

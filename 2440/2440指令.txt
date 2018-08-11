@@ -2,6 +2,9 @@
 mount -t nfs -o nolock,vers=2 192.168.100.9:/work/nfs_root/ /mnt
 mount -t nfs -o nolock,vers=2 192.168.100.9:/work/nfs_root/mydrv/ /mnt
 
+nfs 30000000 192.168.100.9:/work/nfs_root/uImage_nohid;bootm 30000000
+
+
 查看已经安装的设备驱动
 cat /proc/devices
 
