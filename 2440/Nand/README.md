@@ -14,7 +14,7 @@ Nand FLASH 协议： 知道发什么   来读写擦除
 
 
 
-
+set bootargs root =  /dev/nfs nfsroot=192.168.100.9:/work/nfs_root/first_fs ip=192.168.100.17:192.168.100.9:192.168.100.1:255.255.255.0::eth0:off
 
 
 

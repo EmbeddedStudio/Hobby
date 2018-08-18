@@ -53,8 +53,8 @@ static struct mtd_info * bsp_mtd;
 static struct s3c_nand_regs * s3c_nand_regs;
 
 
-/*
-static struct mtd_paratition s3c_nand_parts[]={
+
+static struct mtd_partition s3c_nand_parts[]={
     [0]={
         .name = "bootoader",
         .size = 0x00040000,
@@ -62,20 +62,20 @@ static struct mtd_paratition s3c_nand_parts[]={
     },
     [1]={
         .name = "params",
-        .size = MTDPART_OFS_APPEND,
-        .offset= 0X00020000,
+        .size = 0X00020000,
+        .offset= MTDPART_OFS_APPEND,
     },
     [0]={
         .name = "kernel",
-        .size = MTDPART_OFS_APPEND,
-        .offset=0x00200000,
+        .size = 0x00200000,
+        .offset=MTDPART_OFS_APPEND,
     },
     [0]={
         .name = "root",
-        .size = MTDPART_OFS_APPEND,
-        .offset= MTDPART_SIZ_FULL,
+        .size = MTDPART_SIZ_FULL,
+        .offset= MTDPART_OFS_APPEND,
     }
-};*/
+};
 
  
 static void s3c2440_select_chip(struct mtd_info * mtd,int chipnr)
@@ -142,7 +142,7 @@ static int  nand_init()
     
     nand_scan(bsp_mtd,1);
     /*5.add_mtd_partitions*/
-    //add_mtd_partitions(mtd,s3c_nand_parts,4);
+    add_mtd_partitions(bsp_mtd,s3c_nand_parts,4);
     //add_mtd_device
     
 }
@@ -153,14 +153,17 @@ static void nand_exit()
     kfree(bsp_mtd);
     iounmap(s3c_nand_regs);
     kfree(bsp_nand);
+    del_mtd_partitions(bsp_mtd);
+    
 }
 
 
 
 module_init(nand_init);
 module_exit(nand_exit);
-
 MODULE_LICENSE("GPL");
+ 
+   
 
 
 
