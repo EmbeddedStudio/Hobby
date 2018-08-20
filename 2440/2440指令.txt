@@ -5,10 +5,12 @@ mount -t nfs -o nolock,vers=2 192.168.100.9:/work/nfs_root/mydrv/ /mnt
 启动参数
 set bootargs noinitrd root=/dev/nfs nfsroot=192.168.100.9:/work/nfs_root/first_fs  ip=192.168.100.17:192.168.100.9:192.168.100.1:255.255.255.0::eth0:off init=/linuxrc console=ttySAC0
 
-set bootargs noinitrd root=/dev/nfs nfsroot=192.168.100.9:/work/nfs_root/first_fs/learn  ip=192.168.100.17:192.168.100.9:192.168.100.1:255.255.255.0::eth0:off init=/linuxrc console=ttySAC0
+set bootargs noinitrd root=/dev/nfs nfsroot=192.168.100.9:/learn/first_fs  ip=192.168.100.17:192.168.100.9:192.168.100.1:255.255.255.0::eth0:off init=/linuxrc console=ttySAC0
 
 默认参数
 set bootargs noinitrd root=/dev/mtdblock3 rootfstype=jffs2 init=/linuxrc console=ttySAC0 
+
+printk(" %s %d\n",  __FUNCTION__, __LINE__);
 
 用服务器内核启动
 nfs 30000000 192.168.100.9:/work/nfs_root/uImage_nohid;bootm 30000000
