@@ -24,7 +24,7 @@ else
 fi
 
 U 盘自动挂载
-
+sda[1-9]+ 0:0 777 * if [ $ACTION = "add" ]; then mount /dev/$MDEV /mut; else umount /mnt; fi
 
 
 

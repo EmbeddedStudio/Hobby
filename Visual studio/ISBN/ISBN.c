@@ -32,6 +32,7 @@ int main (void)
 		wei=0;
 	}
 	printf("%d",wei);
+	getchar();
 	return 0;	
 } 
 

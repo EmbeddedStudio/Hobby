@@ -82,7 +82,9 @@ void I2C_Stop(void)
         delay_ms(1);
         I2C_SCL_1();
         delay_ms(1);
-        I2C_SDA_1();     
+        I2C_SDA_1();    
+        delay_ms(1);
+        I2C_SCL_0();
 }
 
 //应答数据线应保持有效

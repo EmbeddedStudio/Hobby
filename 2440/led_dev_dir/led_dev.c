@@ -27,9 +27,13 @@ static struct resource led_resource[]={
 		.start = 4,
 		.end=4,
 		.flags=IORESOURCE_IRQ,
-		}
+		},
 
 };
+static void led_release(struct device *dev)
+{
+    
+}
 
 static struct platform_device led_dev={
 	.name = "myled",
@@ -41,10 +45,7 @@ static struct platform_device led_dev={
 	},
 };
 
-static void led_release(&led_dev)
-{
 
-}
 
 static int led_dev_init(void)
 {

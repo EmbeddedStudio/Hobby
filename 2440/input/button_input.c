@@ -34,10 +34,11 @@ struct pin_desc{
 /* ¼üÖµ: ËÉ¿ªÊ±, 0x81, 0x82, 0x83, 0x84 */
 
 
-struct pin_desc pins_desc[3] = {
+static struct pin_desc pins_desc[4] = {
  	{IRQ_EINT0,"S1",S3C2410_GPF0, KEY_L},
  	{IRQ_EINT2,"S2",S3C2410_GPF2, KEY_S},
  	{IRQ_EINT11,"S3",S3C2410_GPG3, KEY_ENTER},
+    {IRQ_EINT19,"S4",S3C2410_GPG11, KEY_BACK},
 };
 
 static void buttons_irq(int irq,void * dev_id)
@@ -93,7 +94,7 @@ static int buttons_init()
 	set_bit(KEY_L,buttons_dev->keybit);
 	set_bit(KEY_S,buttons_dev->keybit);
 	set_bit(KEY_ENTER,buttons_dev->keybit);
-	
+	set_bit(KEY_BACK,buttons_dev->keybit);
     /*3. ×¢²á   */
 	input_register_device(buttons_dev);
 
@@ -104,7 +105,7 @@ static int buttons_init()
 	buttons_timer.function=buttons_timer_function;
 	add_timer(&buttons_timer);
 	
-	for (i=0;i<3;i++)
+	for (i=0;i<4;i++)
 	{
 		request_irq(pins_desc[i].irq, buttons_irq, IRQT_BOTHEDGE, pins_desc[i].name ,&pins_desc[i]);
 	}
@@ -120,7 +121,7 @@ static int buttons_init()
 static int buttons_exit()
 {
 	int i ;
-	for(i=0;i<3;i++)
+	for(i=0;i<4;i++)
 	{
 		free_irq(pins_desc[i].irq,&pins_desc[i]);
 	}
@@ -131,7 +132,7 @@ static int buttons_exit()
 }
 
 module_init(buttons_init);
-module_exit(buttons_init);
+module_exit(buttons_exit);
 MODULE_LICENSE("GPL");
 
 

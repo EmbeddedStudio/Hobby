@@ -13,13 +13,27 @@
 
 #include <linux/init.h>
 
+static int led_probe (struct platform_device *  dev)
+{
+	/*根据  资源*/
+	printk("led_probe,found\n");
+    /*注册字符设备驱动*/
+}
+
+static int led_remove (struct platform_device *  dev)
+{
+	/*根据  资源*/
+	printk("led_probe,remove\n");
+
+    /*卸载字符设备驱动*/
+}
 
 
 /* 分配/设置/注册一个 platform_dirve */
 
 static struct platform_driver led_dir={
-	.probe  = led_probe;
-	.remove = led_remove;
+	.probe  = led_probe,
+	.remove = led_remove,
 	.driver = {
 	.name   = "myled",
 		}
@@ -27,29 +41,15 @@ static struct platform_driver led_dir={
 };
 
 
-static int led_probe (&led_dir)
-{
-	/*根据  资源*/
-	printk("led_probe,found");
-    /*注册字符设备驱动*/
-}
-
-static int led_remove (&led_dir)
-{
-	/*根据  资源*/
-	printk("led_probe,remove");
-
-    /*卸载字符设备驱动*/
-}
 
 static int led_dir_init(void)
 {
-	platform_driver_register(&led_dev);
+	platform_driver_register(&led_dir);
 	return 0;
 }
 static void led_dir_exit(void)
 {
-	platform_driver_unregister(&led_dev);
+	platform_driver_unregister(&led_dir);
 }
 
 module_init(led_dir_init);

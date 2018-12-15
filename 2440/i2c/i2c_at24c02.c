@@ -52,7 +52,7 @@ static ssize_t at24c02_read (struct file *file, char __user * buf , size_t size,
     msg[1].addr  =  at24c02_client->addr;   //源
     msg[1].buf   =  &data;                  //目的
     msg[1].len   =  1;                      //长度
-    msg[1].flags =  I2C_M_RD;               //写
+    msg[1].flags =  I2C_M_RD;               //读
 
 
     ret =  i2c_transfer(at24c02_client->adapter, msg, 2);
@@ -111,8 +111,6 @@ static struct i2c_client_address_data addr_data = {
 
 static int at24c02_probe(struct i2c_adapter *adap, int addr, int kind)
 {   
-    
-    
     printk("at24c02_probe  \n");
 
     /*构造一个client结构体*/
