@@ -19,11 +19,15 @@ printk(" %s %d\n",  __FUNCTION__, __LINE__);
 用服务器内核启动
 nfs 30000000 192.168.100.9:/work/nfs_root/uImage_nohid;bootm 30000000
 
-nfs 30000000 192.168.1.101:/work/nfs_root/uImage_i2c;bootm 30000000
+nfs 30000000 192.168.1.101:/work/nfs_root/uImage_lcd;bootm 30000000
 
 安装arm-linxu-gcc4.3.2后不能编译的问题  
 先  sudo -s 切换到root 用户
 在 export PATH=$PATH:/usr/local/arm/4.3.2/bin 添加环境变量
+
+安装三期arm-linux-gcc3.4教程
+tar -xvf arm-linux-gcc3.4 -C /
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/arm/4.3.2/bin
 
 内核打补丁
  patch -p1 < ../linux-2.6.22.6_jz2440.patch
